@@ -4,6 +4,7 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Trophy, Clock, Target, Mountain, Zap, BarChart3 } from 'lucide-react';
 import { fallbackDataService } from '../services/dataService';
+import { useNavigate } from 'react-router-dom';
 
 interface Race {
   id: string;
@@ -22,6 +23,7 @@ interface RaceCalendarProps {
 }
 
 export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps) {
+  const navigate = useNavigate();
   const [races, setRaces] = useState<Race[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -66,21 +68,31 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
     const lastDay = new Date(year, month + 1, 0);
     const startDate = new Date(firstDay);
     startDate.setDate(startDate.getDate() - firstDay.getDay());
-    
+
     const days = [];
     const currentDay = new Date(startDate);
-    
+
     for (let i = 0; i < 42; i++) {
       days.push(new Date(currentDay));
       currentDay.setDate(currentDay.getDate() + 1);
     }
-    
+
     return days;
   };
 
   const getRacesForDate = (date: Date) => {
-    const dateStr = date.toDateString();
-    return races.filter(race => new Date(race.date).toDateString() === dateStr);
+    // Format cell date as YYYY-MM-DD in local time
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const dateStr = `${year}-${month}-${day}`;
+
+    // Debug log for Oct 27
+    if (month === '10' && day === '27') {
+      console.log('Checking Oct 27:', { dateStr, matchCount: races.filter(r => r.date === dateStr).length });
+    }
+
+    return races.filter(race => race.date === dateStr);
   };
 
   const isToday = (date: Date) => {
@@ -90,6 +102,11 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
 
   const isCurrentMonth = (date: Date) => {
     return date.getMonth() === currentDate.getMonth();
+  };
+
+  const handleRaceClick = (race: Race) => {
+    navigate(`/races/${race.id}`);
+    onRaceSelect?.(race);
   };
 
   const nextRace = races
@@ -126,7 +143,7 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
           </h1>
           <p className="text-muted-foreground mt-1">{selectedSeason} FIS Alpine World Cup Schedule</p>
         </div>
-        
+
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1 bg-surface-container rounded-xl p-1">
             <Button
@@ -151,7 +168,10 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
 
       {/* Next Race Highlight */}
       {nextRace && (
-        <Card className="rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 shadow-lg">
+        <Card
+          className="rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+          onClick={() => handleRaceClick(nextRace)}
+        >
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
@@ -167,11 +187,11 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
-                    <span>{new Date(nextRace.date).toLocaleDateString('en-US', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
+                    <span>{new Date(nextRace.date).toLocaleDateString('en-US', {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
                     })}</span>
                   </div>
                   <Badge variant="secondary" className="bg-primary/10 text-primary">
@@ -237,13 +257,13 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="grid grid-cols-7 gap-1">
                   {getCalendarDays().map((date, index) => {
                     const dayRaces = getRacesForDate(date);
                     const isCurrentMonthDay = isCurrentMonth(date);
                     const isTodayDate = isToday(date);
-                    
+
                     return (
                       <div
                         key={index}
@@ -255,12 +275,11 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                         `}
                         onClick={() => setSelectedDate(date)}
                       >
-                        <div className={`text-sm font-medium ${
-                          isCurrentMonthDay ? 'text-foreground' : 'text-muted-foreground'
-                        } ${isTodayDate ? 'text-primary font-bold' : ''}`}>
+                        <div className={`text-sm font-medium ${isCurrentMonthDay ? 'text-foreground' : 'text-muted-foreground'
+                          } ${isTodayDate ? 'text-primary font-bold' : ''}`}>
                           {date.getDate()}
                         </div>
-                        
+
                         {dayRaces.length > 0 && (
                           <div className="mt-1 space-y-0.5">
                             {dayRaces.slice(0, 2).map(race => {
@@ -273,7 +292,7 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                                   `}
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    onRaceSelect?.(race);
+                                    handleRaceClick(race);
                                   }}
                                 >
                                   <DisciplineIcon className="w-2.5 h-2.5 flex-shrink-0" />
@@ -312,7 +331,7 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                         <div
                           key={race.id}
                           className="p-3 rounded-xl bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors"
-                          onClick={() => onRaceSelect?.(race)}
+                          onClick={() => handleRaceClick(race)}
                         >
                           <div className="flex items-center gap-3">
                             <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center`}>
@@ -343,12 +362,12 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                   {upcomingRaces.map(race => {
                     const { icon: DisciplineIcon, color } = getDisciplineInfo(race.discipline);
                     const daysUntil = Math.ceil((new Date(race.date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
-                    
+
                     return (
                       <div
                         key={race.id}
                         className="p-3 rounded-xl bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors"
-                        onClick={() => onRaceSelect?.(race)}
+                        onClick={() => handleRaceClick(race)}
                       >
                         <div className="flex items-center gap-3">
                           <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center`}>
@@ -379,7 +398,7 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
               const { icon: DisciplineIcon, color } = getDisciplineInfo(race.discipline);
               const raceDate = new Date(race.date);
               const isPast = raceDate < new Date();
-              
+
               return (
                 <Card
                   key={race.id}
@@ -388,7 +407,7 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                     ${isPast ? 'opacity-75' : ''}
                     ${isToday(raceDate) ? 'ring-2 ring-primary bg-primary/5' : ''}
                   `}
-                  onClick={() => onRaceSelect?.(race)}
+                  onClick={() => handleRaceClick(race)}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center gap-4">
@@ -404,10 +423,10 @@ export function RaceCalendar({ selectedSeason, onRaceSelect }: RaceCalendarProps
                           </div>
                           <div className="flex items-center gap-1">
                             <Clock className="w-4 h-4" />
-                            <span>{raceDate.toLocaleDateString('en-US', { 
+                            <span>{raceDate.toLocaleDateString('en-US', {
                               weekday: 'short',
-                              month: 'short', 
-                              day: 'numeric' 
+                              month: 'short',
+                              day: 'numeric'
                             })}</span>
                           </div>
                         </div>

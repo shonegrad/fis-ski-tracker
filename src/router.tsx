@@ -6,6 +6,7 @@ import { LoadingSpinner } from './components/ui/LoadingSpinner';
 // Lazy load route components for code splitting
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Races = lazy(() => import('./pages/Races'));
+const RaceDetail = lazy(() => import('./pages/RaceDetail')); // Added RaceDetail
 const Locations = lazy(() => import('./pages/Locations'));
 const Athletes = lazy(() => import('./pages/Athletes'));
 const Standings = lazy(() => import('./pages/Standings'));
@@ -20,6 +21,7 @@ const router = createHashRouter([
         children: [
             { index: true, element: <Suspense fallback={<LoadingSpinner />}><Dashboard /></Suspense> },
             { path: 'races', element: <Suspense fallback={<LoadingSpinner />}><Races /></Suspense> },
+            { path: 'races/:raceId', element: <Suspense fallback={<LoadingSpinner />}><RaceDetail /></Suspense> }, // Added RaceDetail route
             { path: 'locations', element: <Suspense fallback={<LoadingSpinner />}><Locations /></Suspense> },
             { path: 'athletes', element: <Suspense fallback={<LoadingSpinner />}><Athletes /></Suspense> },
             { path: 'athletes/:athleteId', element: <Suspense fallback={<LoadingSpinner />}><AthleteDetail /></Suspense> },

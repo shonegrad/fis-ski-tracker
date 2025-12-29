@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -23,7 +24,6 @@ import {
   AreaChart
 } from 'recharts';
 import { LocationList } from './LocationList';
-import { EnhancedRaceResults } from './EnhancedRaceResults';
 import { EnhancedCompetitorList } from './EnhancedCompetitorList';
 import { NationCupChart } from './charts/NationCupChart';
 
@@ -87,13 +87,13 @@ interface DashboardProps {
 }
 
 export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
+  const navigate = useNavigate();
   const [races, setRaces] = useState<Race[]>([]);
   const [locations, setLocations] = useState<Location[]>([]);
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('overview');
-  const [selectedRace, setSelectedRace] = useState<Race | null>(null);
   const [selectedCompetitor, setSelectedCompetitor] = useState<string | null>(null);
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const [notificationError, setNotificationError] = useState<string | null>(null);
@@ -177,14 +177,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
     setNotificationError(null);
   };
 
-  if (selectedRace) {
-    return (
-      <EnhancedRaceResults
-        race={selectedRace}
-        onBack={() => setSelectedRace(null)}
-      />
-    );
-  }
+
 
   if (selectedCompetitor) {
     return (
@@ -239,7 +232,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
             <Button
               variant="link"
               className="ml-2 p-0 h-auto text-error underline hover:text-error/80"
-              onClick={() => setSelectedRace(liveRaces[0])}
+              onClick={() => navigate(`/races/${liveRaces[0].id}`)}
             >
               Watch Live
             </Button>
@@ -541,7 +534,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                       <div
                         key={race.id}
                         className="flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-all duration-200 hover:elevation-1"
-                        onClick={() => setSelectedRace(race)}
+                        onClick={() => navigate(`/races/${race.id}`)}
                       >
                         <div>
                           <p className="body-large text-on-surface font-medium">{race.name}</p>
@@ -646,7 +639,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                       <div
                         key={race.id}
                         className="group relative overflow-hidden rounded-xl bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-all duration-300 hover:elevation-2 border border-outline-variant/20 hover:border-primary/30"
-                        onClick={() => setSelectedRace(race)}
+                        onClick={() => navigate(`/races/${race.id}`)}
                       >
                         {/* Gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -775,7 +768,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
               <Card
                 key={race.id}
                 className="cursor-pointer hover:bg-muted/50 transition-colors"
-                onClick={() => setSelectedRace(race)}
+                onClick={() => navigate(`/races/${race.id}`)}
               >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
