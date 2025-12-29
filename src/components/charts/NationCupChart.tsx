@@ -78,7 +78,7 @@ export function NationCupChart({ data }: NationCupChartProps) {
         // Axes
         g.append('g')
             .attr('transform', `translate(0,${height})`)
-            .call(d3.axisBottom(x).ticks(5).tickSizeOpacity(0))
+            .call(d3.axisBottom(x).ticks(5).tickSize(0))
             .select('.domain').remove();
 
         g.append('g')
