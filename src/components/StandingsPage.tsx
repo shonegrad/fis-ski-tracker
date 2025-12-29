@@ -43,6 +43,7 @@ interface Competitor {
   rank: number;
   image: string;
   previousRank?: number;
+  disciplineRanks?: Record<string, { rank: number; points: number } | null>;
 }
 
 interface StandingsPageProps {
@@ -113,14 +114,29 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
     }
   };
 
+  const getDisciplineStats = (competitor: Competitor, discipline: string) => {
+    if (discipline === 'overall') {
+      return { rank: competitor.rank, points: competitor.worldCupPoints };
+    }
+    const keyMap: Record<string, string> = {
+      'slalom': 'slalom',
+      'giant-slalom': 'giantSlalom',
+      'super-g': 'superG',
+      'downhill': 'downhill'
+    };
+    const key = keyMap[discipline];
+    const stats = competitor.disciplineRanks?.[key];
+    return stats ? { rank: stats.rank, points: stats.points } : null;
+  };
+
   // Filter competitors by discipline
-  const filteredCompetitors = selectedDiscipline === 'overall'
-    ? competitors
-    : competitors.filter(c =>
-      c.disciplines.some(d =>
-        d.toLowerCase().includes(selectedDiscipline.replace('-', ' '))
-      )
-    ).sort((a, b) => b.worldCupPoints - a.worldCupPoints);
+  const filteredCompetitors = competitors
+    .filter(c => getDisciplineStats(c, selectedDiscipline) !== null)
+    .sort((a, b) => {
+      const statsA = getDisciplineStats(a, selectedDiscipline);
+      const statsB = getDisciplineStats(b, selectedDiscipline);
+      return (statsB?.points || 0) - (statsA?.points || 0);
+    });
 
   // Top performers for charts
   const topPerformers = filteredCompetitors.slice(0, 10).map(c => ({
@@ -214,8 +230,8 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                 </p>
                 <div className="flex items-center gap-6">
                   <div>
-                    <div className="text-2xl font-bold text-yellow-600">{leader.worldCupPoints}</div>
-                    <div className="text-sm text-muted-foreground">Total Points</div>
+                    <div className="text-2xl font-bold text-yellow-600">{getDisciplineStats(leader, selectedDiscipline)?.points}</div>
+                    <div className="text-sm text-muted-foreground">Points</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-yellow-600">{leader.age}</div>
@@ -232,12 +248,13 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                 <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/50 rounded-2xl flex items-center justify-center mb-2">
                   <Trophy className="w-8 h-8 text-yellow-600" />
                 </div>
-                <div className="text-sm font-medium text-muted-foreground">Rank #1</div>
+                <div className="text-sm font-medium text-muted-foreground">Rank #{getDisciplineStats(leader, selectedDiscipline)?.rank}</div>
               </div>
             </div>
           </CardContent>
         </Card>
-      )}
+      )
+      }
 
       {/* Discipline Filter & Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -344,7 +361,8 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {topThree.map((athlete, index) => {
-              const trend = getRankTrend(athlete.rank, athlete.previousRank);
+              const stats = getDisciplineStats(athlete, selectedDiscipline);
+              const trend = getRankTrend(stats?.rank || 999, athlete.previousRank);
               const positions = ['🥇 1st', '🥈 2nd', '🥉 3rd'];
               const bgColors = [
                 'bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-950/20 dark:to-yellow-900/20',
@@ -387,8 +405,8 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
 
                     <div className="space-y-2">
                       <div>
-                        <div className="text-xl font-bold text-primary">{athlete.worldCupPoints}</div>
-                        <div className="text-xs text-muted-foreground">World Cup Points</div>
+                        <div className="text-xl font-bold text-primary">{stats?.points}</div>
+                        <div className="text-xs text-muted-foreground">Points</div>
                       </div>
                       <div className="flex justify-center gap-1 flex-wrap">
                         {athlete.disciplines.slice(0, 2).map(discipline => (
@@ -425,7 +443,8 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
         <CardContent>
           <div className="space-y-3">
             {filteredCompetitors.map((athlete, index) => {
-              const trend = getRankTrend(athlete.rank, athlete.previousRank);
+              const stats = getDisciplineStats(athlete, selectedDiscipline);
+              const trend = getRankTrend(stats?.rank || 999, athlete.previousRank);
               const isTopThree = index < 3;
 
               return (
@@ -444,7 +463,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                         w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm
                         ${isTopThree ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}
                       `}>
-                        #{athlete.rank}
+                        #{stats?.rank}
                       </div>
                       {getTrendIcon(trend)}
                     </div>
@@ -476,7 +495,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                     {/* Stats */}
                     <div className="flex items-center gap-6">
                       <div className="text-center">
-                        <div className="text-lg font-bold text-primary">{athlete.worldCupPoints}</div>
+                        <div className="text-lg font-bold text-primary">{stats?.points}</div>
                         <div className="text-xs text-muted-foreground">Points</div>
                       </div>
 
@@ -513,6 +532,6 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
           </div>
         </CardContent>
       </Card>
-    </div>
+    </div >
   );
 }

@@ -48,6 +48,7 @@ function standingToCompetitor(standing: any, athletes: any[]) {
         disciplines: athlete?.disciplines || ['Giant Slalom'],
         worldCupPoints: standing.points,
         rank: standing.rank,
+        disciplineRanks: standing.disciplineRanks,
         image: getAthletePhoto(standing.athleteId, standing.countryCode || standing.country),
         equipment: standing.equipment,
     };
