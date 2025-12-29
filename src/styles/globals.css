@@ -1,0 +1,561 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Material 3 Winter Color Palette */
+  --font-size: 14px;
+  
+  /* Primary - Deep Winter Blue */
+  --primary: #1565C0;
+  --primary-foreground: #FFFFFF;
+  --on-primary: #FFFFFF;
+  --primary-container: #BBDEFB;
+  --on-primary-container: #0D47A1;
+  
+  /* Secondary - Icy Blue */
+  --secondary: #37474F;
+  --secondary-foreground: #FFFFFF;
+  --on-secondary: #FFFFFF;
+  --secondary-container: #B0BEC5;
+  --on-secondary-container: #263238;
+  
+  /* Tertiary - Alpine Snow */
+  --tertiary: #455A64;
+  --tertiary-foreground: #FFFFFF;
+  --on-tertiary: #FFFFFF;
+  --tertiary-container: #CFD8DC;
+  --on-tertiary-container: #37474F;
+  
+  /* Surface - Winter White/Gray */
+  --surface: #FAFAFA;
+  --surface-dim: #F5F5F5;
+  --surface-bright: #FFFFFF;
+  --surface-container-lowest: #FFFFFF;
+  --surface-container-low: #F8F9FA;
+  --surface-container: #F1F3F4;
+  --surface-container-high: #E8EAED;
+  --surface-container-highest: #E0E3E7;
+  --on-surface: #1C1B1F;
+  --on-surface-variant: #49454F;
+  --surface-variant: #E7E0EC;
+  --on-surface-variant: #49454F;
+  
+  /* Background */
+  --background: #FEFBFF;
+  --on-background: #1C1B1F;
+  --foreground: #1C1B1F;
+  
+  /* Cards */
+  --card: #FFFFFF;
+  --card-foreground: #1C1B1F;
+  
+  /* Popover */
+  --popover: #FFFFFF;
+  --popover-foreground: #1C1B1F;
+  
+  /* Muted - Winter Fog */
+  --muted: #F1F3F4;
+  --muted-foreground: #5F6368;
+  
+  /* Accent - Frost Blue */
+  --accent: #E3F2FD;
+  --accent-foreground: #0D47A1;
+  
+  /* Error - Alpine Warning Red */
+  --destructive: #C62828;
+  --destructive-foreground: #FFFFFF;
+  --error: #C62828;
+  --on-error: #FFFFFF;
+  --error-container: #FFCDD2;
+  --on-error-container: #B71C1C;
+  
+  /* Success - Alpine Pine */
+  --success: #2E7D32;
+  --on-success: #FFFFFF;
+  --success-container: #C8E6C9;
+  --on-success-container: #1B5E20;
+  
+  /* Warning - Mountain Sun */
+  --warning: #F57C00;
+  --on-warning: #FFFFFF;
+  --warning-container: #FFE0B2;
+  --on-warning-container: #E65100;
+  
+  /* Borders & Outlines */
+  --border: #E0E3E7;
+  --outline: #79747E;
+  --outline-variant: #CAC4D0;
+  
+  /* Input */
+  --input: transparent;
+  --input-background: #F8F9FA;
+  
+  /* Switch */
+  --switch-background: #B0BEC5;
+  
+  /* Elevation & Shadow */
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-elevation-2: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+  --shadow-elevation-3: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  
+  /* Typography */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  
+  /* Border Radius - Material 3 */
+  --radius: 12px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Focus Ring */
+  --ring: #1565C0;
+  
+  /* Chart Colors - Winter Palette */
+  --chart-1: #1565C0; /* Deep Blue */
+  --chart-2: #0277BD; /* Light Blue */
+  --chart-3: #37474F; /* Blue Gray */
+  --chart-4: #455A64; /* Dark Blue Gray */
+  --chart-5: #546E7A; /* Medium Blue Gray */
+  
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1C1B1F;
+  --sidebar-primary: #1565C0;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F8F9FA;
+  --sidebar-accent-foreground: #1C1B1F;
+  --sidebar-border: #E0E3E7;
+  --sidebar-ring: #1565C0;
+}
+
+.dark {
+  /* Dark Mode - Winter Night Palette */
+  --primary: #90CAF9;
+  --primary-foreground: #0D47A1;
+  --on-primary: #0D47A1;
+  --primary-container: #1565C0;
+  --on-primary-container: #E3F2FD;
+  
+  --secondary: #81C784;
+  --secondary-foreground: #1B5E20;
+  --on-secondary: #1B5E20;
+  --secondary-container: #2E7D32;
+  --on-secondary-container: #C8E6C9;
+  
+  --tertiary: #B39DDB;
+  --tertiary-foreground: #4527A0;
+  --on-tertiary: #4527A0;
+  --tertiary-container: #5E35B1;
+  --on-tertiary-container: #E1BEE7;
+  
+  /* Dark Surfaces */
+  --surface: #121212;
+  --surface-dim: #0A0A0A;
+  --surface-bright: #2A2A2A;
+  --surface-container-lowest: #0A0A0A;
+  --surface-container-low: #1A1A1A;
+  --surface-container: #1E1E1E;
+  --surface-container-high: #252525;
+  --surface-container-highest: #2C2C2C;
+  --on-surface: #E6E1E5;
+  --on-surface-variant: #CAC4D0;
+  --surface-variant: #49454F;
+  --on-surface-variant: #CAC4D0;
+  
+  --background: #0F0F0F;
+  --on-background: #E6E1E5;
+  --foreground: #E6E1E5;
+  
+  --card: #1E1E1E;
+  --card-foreground: #E6E1E5;
+  
+  --popover: #1E1E1E;
+  --popover-foreground: #E6E1E5;
+  
+  --muted: #2A2A2A;
+  --muted-foreground: #9CA3AF;
+  
+  --accent: #263238;
+  --accent-foreground: #90CAF9;
+  
+  --destructive: #EF5350;
+  --destructive-foreground: #FFFFFF;
+  --error: #EF5350;
+  --on-error: #FFFFFF;
+  --error-container: #C62828;
+  --on-error-container: #FFCDD2;
+  
+  --success: #66BB6A;
+  --on-success: #FFFFFF;
+  --success-container: #2E7D32;
+  --on-success-container: #C8E6C9;
+  
+  --warning: #FFA726;
+  --on-warning: #FFFFFF;
+  --warning-container: #F57C00;
+  --on-warning-container: #FFE0B2;
+  
+  --border: #2A2A2A;
+  --outline: #938F99;
+  --outline-variant: #49454F;
+  
+  --input: #2A2A2A;
+  --input-background: #2A2A2A;
+  
+  --switch-background: #37474F;
+  
+  --ring: #90CAF9;
+  
+  --chart-1: #90CAF9;
+  --chart-2: #81D4FA;
+  --chart-3: #B0BEC5;
+  --chart-4: #90A4AE;
+  --chart-5: #78909C;
+  
+  --sidebar: #1A1A1A;
+  --sidebar-foreground: #E6E1E5;
+  --sidebar-primary: #90CAF9;
+  --sidebar-primary-foreground: #0D47A1;
+  --sidebar-accent: #2A2A2A;
+  --sidebar-accent-foreground: #E6E1E5;
+  --sidebar-border: #2A2A2A;
+  --sidebar-ring: #90CAF9;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-full: var(--radius-full);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Material 3 Surface Colors */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-surface-variant: var(--surface-variant);
+  
+  /* Material 3 Container Colors */
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  
+  /* Status Colors */
+  --color-success: var(--success);
+  --color-on-success: var(--on-success);
+  --color-success-container: var(--success-container);
+  --color-on-success-container: var(--on-success-container);
+  --color-warning: var(--warning);
+  --color-on-warning: var(--on-warning);
+  --color-warning-container: var(--warning-container);
+  --color-on-warning-container: var(--on-warning-container);
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+  
+  /* Outline Colors */
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  /* Material 3 Elevation Shadows */
+  .elevation-1 {
+    box-shadow: var(--shadow-elevation-1);
+  }
+  
+  .elevation-2 {
+    box-shadow: var(--shadow-elevation-2);
+  }
+  
+  .elevation-3 {
+    box-shadow: var(--shadow-elevation-3);
+  }
+  
+  /* Material 3 Surface Variants */
+  .surface-dim {
+    background-color: var(--surface-dim);
+  }
+  
+  .surface-bright {
+    background-color: var(--surface-bright);
+  }
+  
+  .surface-container-lowest {
+    background-color: var(--surface-container-lowest);
+  }
+  
+  .surface-container-low {
+    background-color: var(--surface-container-low);
+  }
+  
+  .surface-container {
+    background-color: var(--surface-container);
+  }
+  
+  .surface-container-high {
+    background-color: var(--surface-container-high);
+  }
+  
+  .surface-container-highest {
+    background-color: var(--surface-container-highest);
+  }
+}
+
+/**
+ * Material 3 Typography System
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    /* Display Typography */
+    .display-large {
+      font-size: 3.5rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.12;
+      letter-spacing: -0.25px;
+    }
+    
+    .display-medium {
+      font-size: 2.8125rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+    
+    .display-small {
+      font-size: 2.25rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+    
+    /* Headline Typography */
+    .headline-large {
+      font-size: 2rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    
+    .headline-medium {
+      font-size: 1.75rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.29;
+      letter-spacing: 0;
+    }
+    
+    .headline-small {
+      font-size: 1.5rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.33;
+      letter-spacing: 0;
+    }
+
+    /* Default HTML Elements */
+    h1 {
+      font-size: 2rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.29;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.33;
+      letter-spacing: 0;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      letter-spacing: 0.15px;
+    }
+
+    h5 {
+      font-size: 1.125rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.44;
+      letter-spacing: 0.15px;
+    }
+
+    h6 {
+      font-size: 1rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      letter-spacing: 0.15px;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      letter-spacing: 0.5px;
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.43;
+      letter-spacing: 0.25px;
+    }
+
+    button {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.43;
+      letter-spacing: 0.1px;
+    }
+
+    input {
+      font-size: 1rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Body Typography */
+    .body-large {
+      font-size: 1rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      letter-spacing: 0.15px;
+    }
+    
+    .body-medium {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.43;
+      letter-spacing: 0.25px;
+    }
+    
+    .body-small {
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.33;
+      letter-spacing: 0.4px;
+    }
+    
+    /* Label Typography */
+    .label-large {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.43;
+      letter-spacing: 0.1px;
+    }
+    
+    .label-medium {
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.33;
+      letter-spacing: 0.5px;
+    }
+    
+    .label-small {
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.45;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Material 3 Winter Theme Utilities */
+@layer utilities {
+  .winter-gradient {
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 50%, #90CAF9 100%);
+  }
+  
+  .winter-gradient-dark {
+    background: linear-gradient(135deg, #263238 0%, #37474F 50%, #455A64 100%);
+  }
+  
+  .alpine-shadow {
+    box-shadow: 0 4px 20px rgba(21, 101, 192, 0.15);
+  }
+  
+  .frost-border {
+    border: 1px solid rgba(21, 101, 192, 0.2);
+  }
+  
+  .ice-glow {
+    box-shadow: 0 0 20px rgba(144, 202, 249, 0.3);
+  }
+}
+
