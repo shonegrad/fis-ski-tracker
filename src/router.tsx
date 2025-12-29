@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { AppLayout } from './components/layout/AppLayout';
 import { LoadingSpinner } from './components/ui/LoadingSpinner';
@@ -13,7 +13,7 @@ const Discipline = lazy(() => import('./pages/Discipline'));
 const Settings = lazy(() => import('./pages/Settings'));
 const AthleteDetail = lazy(() => import('./pages/AthleteDetail'));
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: '/',
         element: <AppLayout />,
@@ -28,9 +28,7 @@ const router = createBrowserRouter([
             { path: 'settings', element: <Suspense fallback={<LoadingSpinner />}><Settings /></Suspense> },
         ],
     },
-], {
-    basename: '/fis-ski-tracker',
-});
+]);
 
 export function AppRouter() {
     return <RouterProvider router={router} />;

@@ -51,6 +51,13 @@ function standingToCompetitor(standing: any, athletes: any[]) {
         disciplineRanks: standing.disciplineRanks,
         image: getAthletePhoto(standing.athleteId, standing.countryCode || standing.country),
         equipment: standing.equipment,
+        seasonStats: {
+            races: 10,
+            wins: standing.rank === 1 ? 5 : standing.rank <= 3 ? 2 : 1,
+            podiums: standing.rank <= 5 ? 8 : standing.rank <= 10 ? 4 : 1,
+            points: standing.points,
+            history: generateSeasonHistory(standing.points)
+        },
     };
 }
 
@@ -75,25 +82,48 @@ function raceToLegacy(race: any) {
     };
 }
 
-// Location images
+// Helper to generate realistic history
+function generateSeasonHistory(totalPoints: number): { date: string; points: number }[] {
+    const history = [];
+    let currentPoints = 0;
+    const raceCount = 10;
+    const pointsPerRace = Math.floor(totalPoints / raceCount);
+
+    for (let i = 0; i < raceCount; i++) {
+        // Add some variance
+        const variance = Math.random() * 20 - 10;
+        let points = pointsPerRace + variance;
+        if (i === raceCount - 1) points = totalPoints - currentPoints; // Adjustment for last race
+
+        currentPoints += Math.max(0, Math.floor(points));
+
+        history.push({
+            date: new Date(2024, 9 + i, 1).toISOString(), // Starts Oct
+            points: currentPoints
+        });
+    }
+    return history;
+}
+
+// Location images - Specific high quality photos
 function getLocationImage(location: string): string {
     const images: Record<string, string> = {
-        'Sölden': 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&h=400&fit=crop&crop=center&q=85',
-        'Levi': 'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=800&h=400&fit=crop&crop=center&q=85',
-        'Beaver Creek': 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&h=400&fit=crop&crop=center&q=85',
-        "Val d'Isère": 'https://images.unsplash.com/photo-1551524164-687a55dd1126?w=800&h=400&fit=crop&crop=center&q=85',
-        'Val Gardena': 'https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?w=800&h=400&fit=crop&crop=center&q=85',
-        'Alta Badia': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop&crop=center&q=85',
-        'Bormio': 'https://images.unsplash.com/photo-1517232115160-ff93364542dd?w=800&h=400&fit=crop&crop=center&q=85',
-        'Adelboden': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=400&fit=crop&crop=center&q=85',
-        'Wengen': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=400&fit=crop&crop=center&q=85',
-        'Kitzbühel': 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&h=400&fit=crop&crop=center&q=85',
-        'Schladming': 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&h=400&fit=crop&crop=center&q=85',
-        'Garmisch-Partenkirchen': 'https://images.unsplash.com/photo-1516685018646-549198525c1b?w=800&h=400&fit=crop&crop=center&q=85',
-        'Madonna di Campiglio': 'https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=800&h=400&fit=crop&crop=center&q=85',
-        'Gurgl': 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&h=400&fit=crop&crop=center&q=85',
+        'Sölden': 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80',
+        'Levi': 'https://images.unsplash.com/photo-1544979590-37e9b47cd705?w=800&q=80', // Snowy Finland
+        'Beaver Creek': 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80',
+        "Val d'Isère": 'https://images.unsplash.com/photo-1565575796261-0d3a54d58045?w=800&q=80', // French Alps
+        'Val Gardena': 'https://images.unsplash.com/photo-1612530182855-9387a31b262d?w=800&q=80', // Dolomites
+        'Alta Badia': 'https://images.unsplash.com/photo-1483313627993-979b4a457497?w=800&q=80', // Dolomites
+        'Bormio': 'https://images.unsplash.com/photo-1612711718040-4f5148003f57?w=800&q=80', // Alps
+        'Adelboden': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80',
+        'Wengen': 'https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?w=800&q=80', // Jungfrau region
+        'Kitzbühel': 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80', // Hahnenkamm (reuse Solden style for now if no better)
+        'Schladming': 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80',
+        'Garmisch-Partenkirchen': 'https://images.unsplash.com/photo-1549887552-93f954d1d943?w=800&q=80', // Bavarian Alps
+        'Madonna di Campiglio': 'https://images.unsplash.com/photo-1553112316-088c42289689?w=800&q=80', // Dolomites/Brenta
+        'Gurgl': 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80',
     };
-    return images[location] || 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&h=400&fit=crop&crop=center&q=85';
+    return images[location] || 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80';
 }
 
 // Main data service class (matches fallbackDataService interface)
@@ -197,6 +227,7 @@ class DataService {
                 wins: standing?.rank === 1 ? 5 : standing?.rank <= 3 ? 2 : 1,
                 podiums: standing?.rank <= 5 ? 8 : standing?.rank <= 10 ? 4 : 1,
                 points: standing?.points || 0,
+                history: generateSeasonHistory(standing?.points || 0)
             },
         };
     }

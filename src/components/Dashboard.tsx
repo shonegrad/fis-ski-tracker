@@ -25,6 +25,7 @@ import {
 import { LocationList } from './LocationList';
 import { EnhancedRaceResults } from './EnhancedRaceResults';
 import { EnhancedCompetitorList } from './EnhancedCompetitorList';
+import { NationCupChart } from './charts/NationCupChart';
 
 import {
   Trophy,
@@ -212,6 +213,17 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
   const upcomingRaces = races.filter(race => race.status === 'scheduled');
   const totalPhotos = races.length * 15; // Mock calculation
   const totalVideos = races.length * 3; // Mock calculation
+
+  // Calculate Nation Cup Data
+  const nationPoints = competitors.reduce((acc, curr) => {
+    acc[curr.country] = (acc[curr.country] || 0) + curr.worldCupPoints;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const nationCupData = Object.entries(nationPoints)
+    .map(([country, points]) => ({ country, points }))
+    .sort((a, b) => b.points - a.points)
+    .slice(0, 10); // Top 10 nations
 
   return (
     <div className="space-y-6">
@@ -548,6 +560,11 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
               </Card>
             )}
 
+            {/* Nations Cup Chart (D3) */}
+            <div className="lg:col-span-2">
+              <NationCupChart data={nationCupData} />
+            </div>
+
             {/* World Cup Standings */}
             <Card className="rounded-2xl bg-surface-container-low elevation-1 border-0">
               <CardHeader className="pb-4">
@@ -665,8 +682,8 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                               <div className="text-right flex-shrink-0">
                                 <div className="flex items-center gap-2 mb-1">
                                   <Badge className={`${isUpcoming
-                                      ? 'bg-success-container text-on-success-container'
-                                      : 'bg-warning-container text-on-warning-container'
+                                    ? 'bg-success-container text-on-success-container'
+                                    : 'bg-warning-container text-on-warning-container'
                                     } border-0 rounded-lg label-small px-2 py-1`}>
                                     {isUpcoming ? 'Scheduled' : 'Past'}
                                   </Badge>
