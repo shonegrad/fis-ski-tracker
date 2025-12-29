@@ -73,9 +73,9 @@ export function SidebarNavigation({
       `}
     >
       <item.icon className={`
-        transition-transform duration-200 
+        transition-transform duration-200 flex-shrink-0
         ${isActive(item.id) ? 'scale-110' : 'group-hover:scale-105'} 
-        ${isCollapsed ? 'w-5 h-5' : 'w-5 h-5 flex-shrink-0'}
+        w-5 h-5
       `} />
       {!isCollapsed && (
         <span className="truncate font-medium">{item.label}</span>
@@ -85,7 +85,7 @@ export function SidebarNavigation({
 
   return (
     <div className={`
-      relative h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300
+      relative h-full bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300
       ${isCollapsed ? 'w-16' : 'w-64'}
     `}>
       {/* Header */}

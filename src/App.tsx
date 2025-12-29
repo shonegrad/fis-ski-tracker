@@ -18,7 +18,7 @@ export default function App() {
     // Check for user's preferred theme
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -31,7 +31,7 @@ export default function App() {
   const toggleTheme = () => {
     const newTheme = !isDarkMode;
     setIsDarkMode(newTheme);
-    
+
     if (newTheme) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -45,14 +45,14 @@ export default function App() {
     switch (currentView) {
       case 'dashboard':
         return (
-          <Dashboard 
-            selectedSeason={selectedSeason} 
+          <Dashboard
+            selectedSeason={selectedSeason}
             onViewChange={setCurrentView}
           />
         );
       case 'races':
         return (
-          <RaceCalendar 
+          <RaceCalendar
             selectedSeason={selectedSeason}
             onRaceSelect={(race) => console.log('Selected race:', race)}
           />
@@ -61,14 +61,14 @@ export default function App() {
         return <LocationList selectedSeason={selectedSeason} />;
       case 'athletes':
         return (
-          <EnhancedCompetitorList 
+          <EnhancedCompetitorList
             selectedSeason={selectedSeason}
             onBack={() => setCurrentView('dashboard')}
           />
         );
       case 'standings':
         return (
-          <StandingsPage 
+          <StandingsPage
             selectedSeason={selectedSeason}
             onAthleteSelect={(athleteId) => console.log('Selected athlete:', athleteId)}
           />
@@ -93,8 +93,8 @@ export default function App() {
         );
       default:
         return (
-          <Dashboard 
-            selectedSeason={selectedSeason} 
+          <Dashboard
+            selectedSeason={selectedSeason}
             onViewChange={setCurrentView}
           />
         );
@@ -102,10 +102,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background transition-colors duration-300 flex">
+    <div className="h-screen w-screen overflow-hidden bg-background transition-colors duration-300 flex">
       {/* Winter Gradient Background */}
       <div className="fixed inset-0 winter-gradient dark:winter-gradient-dark opacity-5 pointer-events-none" />
-      
+
       {/* Sidebar Navigation */}
       <SidebarNavigation
         currentView={currentView}
@@ -115,10 +115,10 @@ export default function App() {
         isDarkMode={isDarkMode}
         onThemeToggle={toggleTheme}
       />
-      
+
       {/* Main Content */}
-      <div className="flex-1 relative z-10 overflow-hidden">
-        <div className="h-full overflow-y-auto">
+      <div className="flex-1 relative z-10 h-full overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-y-auto">
           {renderCurrentView()}
         </div>
       </div>
