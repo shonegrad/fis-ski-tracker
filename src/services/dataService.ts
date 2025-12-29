@@ -9,27 +9,21 @@ import locationsData from '../data/locations.json';
 import type { Season, Standing, Athlete, Race, Location } from './types';
 import { COUNTRY_CODES, DISCIPLINES } from './types';
 
-// Helper to get athlete photo URL (use placeholder for now)
-function getAthletePhoto(athleteId: string): string {
-    // Real FIS photos could be integrated here in the future
-    const photoMap: Record<string, string> = {
-        'odermatt-marco': 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=300&h=300&fit=crop&crop=face&q=85',
-        'schwarz-marco': 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=300&h=300&fit=crop&crop=face&q=85',
-        'meillard-loic': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face&q=85',
-        'haugan-timon': 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=300&h=300&fit=crop&crop=face&q=85',
-        'braathen-lucas': 'https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=300&h=300&fit=crop&crop=face&q=85',
-        'mcgrath-atle': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face&q=85',
-        'kristoffersen-henrik': 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=300&h=300&fit=crop&crop=face&q=85',
-        'vonallmen-franjo': 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face&q=85',
-        'brennsteiner-stefan': 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face&q=85',
-        'vinatzer-alex': 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop&crop=face&q=85',
-        'kriechmayr-vincent': 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=300&h=300&fit=crop&crop=face&q=85',
-        'paris-dominik': 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=300&fit=crop&crop=face&q=85',
-        'strasser-linus': 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face&q=85',
-        'noel-clement': 'https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=300&h=300&fit=crop&crop=face&q=85',
-        'alexander-cameron': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face&q=85',
-    };
-    return photoMap[athleteId] || 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=300&h=300&fit=crop&crop=face&q=85';
+// Helper to get athlete photo URL - returns country flag since we don't have licensed real photos
+function getAthletePhoto(athleteId: string, countryCode?: string): string | null {
+    // We don't have real athlete photos - return null to trigger flag fallback in components
+    // Country flag URLs for fallback display
+    if (countryCode) {
+        const code = COUNTRY_CODES[countryCode] || countryCode.toLowerCase();
+        return `https://flagcdn.com/w160/${code}.png`;
+    }
+    return null;
+}
+
+// Get country flag URL
+function getCountryFlag(countryCode: string): string {
+    const code = COUNTRY_CODES[countryCode] || countryCode.toLowerCase();
+    return `https://flagcdn.com/w160/${code}.png`;
 }
 
 // Convert standings to competitor format (for compatibility)

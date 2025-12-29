@@ -252,6 +252,46 @@
                 "lat": 47.4400,
                 "lng": 11.0886
             }
+        },
+        {
+            "id": "madonna",
+            "name": "Madonna di Campiglio",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "altitude": 1550,
+            "courses": [
+                {
+                    "name": "Canalone Miramonti",
+                    "discipline": "SL",
+                    "length": 470,
+                    "verticalDrop": 180
+                }
+            ],
+            "description": "Hosted the first World Cup race in 1967. Famous for the 3-Tre night slalom.",
+            "coordinates": {
+                "lat": 46.2291,
+                "lng": 10.8273
+            }
+        },
+        {
+            "id": "gurgl",
+            "name": "Gurgl",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "altitude": 1930,
+            "courses": [
+                {
+                    "name": "Kirchenkar",
+                    "discipline": "SL",
+                    "length": 550,
+                    "verticalDrop": 200
+                }
+            ],
+            "description": "High-altitude venue in the Ötztal valley, known as the 'Diamond of the Alps'.",
+            "coordinates": {
+                "lat": 46.8717,
+                "lng": 11.0267
+            }
         }
     ]
 }
