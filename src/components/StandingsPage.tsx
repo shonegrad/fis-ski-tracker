@@ -31,7 +31,7 @@ import {
   Area,
   AreaChart
 } from 'recharts';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 import { AthleteImage } from './AthleteImage';
 
 interface Competitor {

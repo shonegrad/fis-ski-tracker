@@ -1,0 +1,294 @@
+{
+    "season": "2025/2026",
+    "updatedAt": "2024-12-29",
+    "athletes": [
+        {
+            "id": "odermatt-marco",
+            "fisCode": "190231",
+            "name": "Marco Odermatt",
+            "firstName": "Marco",
+            "lastName": "Odermatt",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "birthDate": "1997-10-08",
+            "age": 27,
+            "disciplines": [
+                "Downhill",
+                "Giant Slalom",
+                "Super G"
+            ],
+            "equipment": "Stoeckli",
+            "height": "186cm",
+            "weight": "86kg",
+            "birthPlace": "Buochs, Switzerland"
+        },
+        {
+            "id": "schwarz-marco",
+            "fisCode": "169280",
+            "name": "Marco Schwarz",
+            "firstName": "Marco",
+            "lastName": "Schwarz",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "birthDate": "1995-08-16",
+            "age": 29,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom",
+                "Super G",
+                "Alpine Combined"
+            ],
+            "equipment": "Atomic",
+            "height": "180cm",
+            "weight": "78kg",
+            "birthPlace": "Villach, Austria"
+        },
+        {
+            "id": "meillard-loic",
+            "fisCode": "174158",
+            "name": "Loïc Meillard",
+            "firstName": "Loïc",
+            "lastName": "Meillard",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "birthDate": "1996-10-28",
+            "age": 28,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom",
+                "Super G"
+            ],
+            "equipment": "Rossignol",
+            "height": "178cm",
+            "weight": "80kg",
+            "birthPlace": "Hérémence, Switzerland"
+        },
+        {
+            "id": "haugan-timon",
+            "fisCode": "174450",
+            "name": "Timon Haugan",
+            "firstName": "Timon",
+            "lastName": "Haugan",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "birthDate": "1996-03-24",
+            "age": 28,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom"
+            ],
+            "equipment": "Van Deer",
+            "height": "185cm",
+            "weight": "82kg",
+            "birthPlace": "Bærum, Norway"
+        },
+        {
+            "id": "braathen-lucas",
+            "fisCode": "213820",
+            "name": "Lucas Pinheiro Braathen",
+            "firstName": "Lucas",
+            "lastName": "Pinheiro Braathen",
+            "country": "Brazil",
+            "countryCode": "BRA",
+            "birthDate": "2000-04-19",
+            "age": 24,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom"
+            ],
+            "equipment": "Atomic",
+            "height": "184cm",
+            "weight": "80kg",
+            "birthPlace": "Oslo, Norway"
+        },
+        {
+            "id": "mcgrath-atle",
+            "fisCode": "213823",
+            "name": "Atle Lie McGrath",
+            "firstName": "Atle Lie",
+            "lastName": "McGrath",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "birthDate": "2000-11-21",
+            "age": 24,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom",
+                "Super G"
+            ],
+            "equipment": "Head",
+            "height": "182cm",
+            "weight": "80kg",
+            "birthPlace": "Bærum, Norway"
+        },
+        {
+            "id": "kristoffersen-henrik",
+            "fisCode": "154950",
+            "name": "Henrik Kristoffersen",
+            "firstName": "Henrik",
+            "lastName": "Kristoffersen",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "birthDate": "1994-07-02",
+            "age": 30,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom"
+            ],
+            "equipment": "Van Deer",
+            "height": "180cm",
+            "weight": "78kg",
+            "birthPlace": "Rælingen, Norway"
+        },
+        {
+            "id": "vonallmen-franjo",
+            "fisCode": "220878",
+            "name": "Franjo von Allmen",
+            "firstName": "Franjo",
+            "lastName": "von Allmen",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "birthDate": "2001-03-14",
+            "age": 23,
+            "disciplines": [
+                "Downhill",
+                "Super G"
+            ],
+            "equipment": "Head",
+            "height": "183cm",
+            "weight": "82kg",
+            "birthPlace": "Frutigen, Switzerland"
+        },
+        {
+            "id": "brennsteiner-stefan",
+            "fisCode": "128892",
+            "name": "Stefan Brennsteiner",
+            "firstName": "Stefan",
+            "lastName": "Brennsteiner",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "birthDate": "1991-11-03",
+            "age": 33,
+            "disciplines": [
+                "Giant Slalom"
+            ],
+            "equipment": "Fischer",
+            "height": "186cm",
+            "weight": "84kg",
+            "birthPlace": "Zell am See, Austria"
+        },
+        {
+            "id": "vinatzer-alex",
+            "fisCode": "204319",
+            "name": "Alex Vinatzer",
+            "firstName": "Alex",
+            "lastName": "Vinatzer",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "birthDate": "1999-09-22",
+            "age": 25,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom"
+            ],
+            "equipment": "Atomic",
+            "height": "178cm",
+            "weight": "74kg",
+            "birthPlace": "Bolzano, Italy"
+        },
+        {
+            "id": "kriechmayr-vincent",
+            "fisCode": "162671",
+            "name": "Vincent Kriechmayr",
+            "firstName": "Vincent",
+            "lastName": "Kriechmayr",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "birthDate": "1991-10-01",
+            "age": 33,
+            "disciplines": [
+                "Downhill",
+                "Super G"
+            ],
+            "equipment": "Head",
+            "height": "184cm",
+            "weight": "86kg",
+            "birthPlace": "Linz, Austria"
+        },
+        {
+            "id": "paris-dominik",
+            "fisCode": "132567",
+            "name": "Dominik Paris",
+            "firstName": "Dominik",
+            "lastName": "Paris",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "birthDate": "1989-04-14",
+            "age": 35,
+            "disciplines": [
+                "Downhill",
+                "Super G"
+            ],
+            "equipment": "Nordica",
+            "height": "181cm",
+            "weight": "84kg",
+            "birthPlace": "Merano, Italy"
+        },
+        {
+            "id": "strasser-linus",
+            "fisCode": "104370",
+            "name": "Linus Straßer",
+            "firstName": "Linus",
+            "lastName": "Straßer",
+            "country": "Germany",
+            "countryCode": "GER",
+            "birthDate": "1992-03-26",
+            "age": 32,
+            "disciplines": [
+                "Slalom",
+                "Giant Slalom"
+            ],
+            "equipment": "Rossignol",
+            "height": "179cm",
+            "weight": "78kg",
+            "birthPlace": "Munich, Germany"
+        },
+        {
+            "id": "noel-clement",
+            "fisCode": "211990",
+            "name": "Clément Noël",
+            "firstName": "Clément",
+            "lastName": "Noël",
+            "country": "France",
+            "countryCode": "FRA",
+            "birthDate": "1997-07-03",
+            "age": 27,
+            "disciplines": [
+                "Slalom"
+            ],
+            "equipment": "Dynastar",
+            "height": "177cm",
+            "weight": "73kg",
+            "birthPlace": "Remiremont, France"
+        },
+        {
+            "id": "alexander-cameron",
+            "fisCode": "105176",
+            "name": "Cameron Alexander",
+            "firstName": "Cameron",
+            "lastName": "Alexander",
+            "country": "Canada",
+            "countryCode": "CAN",
+            "birthDate": "1997-08-11",
+            "age": 27,
+            "disciplines": [
+                "Downhill",
+                "Super G"
+            ],
+            "equipment": "Rossignol",
+            "height": "183cm",
+            "weight": "85kg",
+            "birthPlace": "North Vancouver, Canada"
+        }
+    ]
+}

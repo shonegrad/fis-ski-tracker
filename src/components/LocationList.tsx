@@ -6,7 +6,7 @@ import { Skeleton } from "./ui/skeleton";
 import { ArrowLeft, MapPin, Mountain, Calendar, Globe, Snowflake } from 'lucide-react';
 import { WeatherWidget } from './WeatherWidget';
 import { CourseDetails } from './CourseDetails';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 
 interface Location {
   id: string;

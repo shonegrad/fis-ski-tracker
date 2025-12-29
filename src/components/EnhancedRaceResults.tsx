@@ -25,7 +25,7 @@ import { MediaGallery, Photo, VideoHighlight } from './MediaGallery';
 import { NotificationSettings } from './NotificationSettings';
 import { notificationService } from '../services/notificationService';
 import { projectId, publicAnonKey, isConfigured } from '../utils/supabase/info';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 
 interface RaceResult {
   rank: number;

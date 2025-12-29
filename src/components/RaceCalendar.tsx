@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Trophy, Clock, Target, Mountain, Zap, BarChart3 } from 'lucide-react';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 
 interface Race {
   id: string;

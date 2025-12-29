@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { ArrowLeft, Trophy, User, Award, TrendingUp, BarChart3, Calendar, Target } from 'lucide-react';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 import { AthleteImage } from './AthleteImage';
 
 export interface Competitor {

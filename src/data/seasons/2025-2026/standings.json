@@ -1,0 +1,405 @@
+{
+    "season": "2025/2026",
+    "updatedAt": "2024-12-29",
+    "standings": [
+        {
+            "rank": 1,
+            "athleteId": "odermatt-marco",
+            "fisCode": "190231",
+            "name": "Marco Odermatt",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "points": 855,
+            "equipment": "Stoeckli",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 1,
+                    "points": 855
+                },
+                "downhill": {
+                    "rank": 1,
+                    "points": 280
+                },
+                "slalom": null,
+                "giantSlalom": {
+                    "rank": 2,
+                    "points": 300
+                },
+                "superG": {
+                    "rank": 1,
+                    "points": 275
+                }
+            }
+        },
+        {
+            "rank": 2,
+            "athleteId": "schwarz-marco",
+            "fisCode": "169280",
+            "name": "Marco Schwarz",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "points": 451,
+            "equipment": "Atomic",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 2,
+                    "points": 451
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 22,
+                    "points": 54
+                },
+                "giantSlalom": {
+                    "rank": 3,
+                    "points": 252
+                },
+                "superG": {
+                    "rank": 4,
+                    "points": 145
+                }
+            }
+        },
+        {
+            "rank": 3,
+            "athleteId": "meillard-loic",
+            "fisCode": "174158",
+            "name": "Loïc Meillard",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "points": 380,
+            "equipment": "Rossignol",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 3,
+                    "points": 380
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 6,
+                    "points": 158
+                },
+                "giantSlalom": {
+                    "rank": 7,
+                    "points": 186
+                },
+                "superG": {
+                    "rank": 25,
+                    "points": 36
+                }
+            }
+        },
+        {
+            "rank": 4,
+            "athleteId": "haugan-timon",
+            "fisCode": "174450",
+            "name": "Timon Haugan",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "points": 360,
+            "equipment": "Van Deer",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 4,
+                    "points": 360
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 1,
+                    "points": 245
+                },
+                "giantSlalom": {
+                    "rank": 11,
+                    "points": 115
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 5,
+            "athleteId": "braathen-lucas",
+            "fisCode": "213820",
+            "name": "Lucas Pinheiro Braathen",
+            "country": "Brazil",
+            "countryCode": "BRA",
+            "points": 358,
+            "equipment": "Atomic",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 5,
+                    "points": 358
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 4,
+                    "points": 171
+                },
+                "giantSlalom": {
+                    "rank": 6,
+                    "points": 187
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 6,
+            "athleteId": "mcgrath-atle",
+            "fisCode": "213823",
+            "name": "Atle Lie McGrath",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "points": 342,
+            "equipment": "Head",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 6,
+                    "points": 342
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 5,
+                    "points": 160
+                },
+                "giantSlalom": {
+                    "rank": 8,
+                    "points": 160
+                },
+                "superG": {
+                    "rank": 34,
+                    "points": 22
+                }
+            }
+        },
+        {
+            "rank": 7,
+            "athleteId": "kristoffersen-henrik",
+            "fisCode": "154950",
+            "name": "Henrik Kristoffersen",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "points": 335,
+            "equipment": "Van Deer",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 7,
+                    "points": 335
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 8,
+                    "points": 111
+                },
+                "giantSlalom": {
+                    "rank": 4,
+                    "points": 224
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 8,
+            "athleteId": "vonallmen-franjo",
+            "fisCode": "220878",
+            "name": "Franjo von Allmen",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "points": 319,
+            "equipment": "Head",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 8,
+                    "points": 319
+                },
+                "downhill": {
+                    "rank": 2,
+                    "points": 230
+                },
+                "slalom": null,
+                "giantSlalom": null,
+                "superG": {
+                    "rank": 13,
+                    "points": 89
+                }
+            }
+        },
+        {
+            "rank": 9,
+            "athleteId": "brennsteiner-stefan",
+            "fisCode": "128892",
+            "name": "Stefan Brennsteiner",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "points": 305,
+            "equipment": "Fischer",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 9,
+                    "points": 305
+                },
+                "downhill": null,
+                "slalom": null,
+                "giantSlalom": {
+                    "rank": 1,
+                    "points": 305
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 10,
+            "athleteId": "vinatzer-alex",
+            "fisCode": "204319",
+            "name": "Alex Vinatzer",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "points": 295,
+            "equipment": "Atomic",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 10,
+                    "points": 295
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 12,
+                    "points": 88
+                },
+                "giantSlalom": {
+                    "rank": 5,
+                    "points": 207
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 11,
+            "athleteId": "kriechmayr-vincent",
+            "fisCode": "162671",
+            "name": "Vincent Kriechmayr",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "points": 283,
+            "equipment": "Head",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 11,
+                    "points": 283
+                },
+                "downhill": {
+                    "rank": 3,
+                    "points": 195
+                },
+                "slalom": null,
+                "giantSlalom": null,
+                "superG": {
+                    "rank": 12,
+                    "points": 88
+                }
+            }
+        },
+        {
+            "rank": 12,
+            "athleteId": "paris-dominik",
+            "fisCode": "132567",
+            "name": "Dominik Paris",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "points": 268,
+            "equipment": "Nordica",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 12,
+                    "points": 268
+                },
+                "downhill": {
+                    "rank": 4,
+                    "points": 178
+                },
+                "slalom": null,
+                "giantSlalom": null,
+                "superG": {
+                    "rank": 14,
+                    "points": 90
+                }
+            }
+        },
+        {
+            "rank": 13,
+            "athleteId": "strasser-linus",
+            "fisCode": "104370",
+            "name": "Linus Straßer",
+            "country": "Germany",
+            "countryCode": "GER",
+            "points": 255,
+            "equipment": "Rossignol",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 13,
+                    "points": 255
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 2,
+                    "points": 220
+                },
+                "giantSlalom": {
+                    "rank": 38,
+                    "points": 35
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 14,
+            "athleteId": "noel-clement",
+            "fisCode": "211990",
+            "name": "Clément Noël",
+            "country": "France",
+            "countryCode": "FRA",
+            "points": 240,
+            "equipment": "Dynastar",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 14,
+                    "points": 240
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 3,
+                    "points": 200
+                },
+                "giantSlalom": {
+                    "rank": 42,
+                    "points": 40
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 15,
+            "athleteId": "alexander-cameron",
+            "fisCode": "105176",
+            "name": "Cameron Alexander",
+            "country": "Canada",
+            "countryCode": "CAN",
+            "points": 232,
+            "equipment": "Rossignol",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 15,
+                    "points": 232
+                },
+                "downhill": {
+                    "rank": 5,
+                    "points": 160
+                },
+                "slalom": null,
+                "giantSlalom": null,
+                "superG": {
+                    "rank": 18,
+                    "points": 72
+                }
+            }
+        }
+    ]
+}

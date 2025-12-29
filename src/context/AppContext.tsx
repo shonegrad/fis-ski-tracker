@@ -13,7 +13,7 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-    const [selectedSeason, setSelectedSeason] = useState<Season>('2024/2025');
+    const [selectedSeason, setSelectedSeason] = useState<Season>('2025/2026');
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {

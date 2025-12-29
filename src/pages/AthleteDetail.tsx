@@ -6,7 +6,7 @@ import { Button } from '../components/ui/button';
 import { Progress } from '../components/ui/progress';
 import { ArrowLeft, Trophy, Medal, TrendingUp, Calendar, MapPin, Target, Star } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 import { AthleteImage } from '../components/AthleteImage';
 
 interface Athlete {

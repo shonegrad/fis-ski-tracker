@@ -1,0 +1,257 @@
+{
+    "updatedAt": "2024-12-29",
+    "locations": [
+        {
+            "id": "soelden",
+            "name": "Sölden",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "altitude": 3340,
+            "courses": [
+                {
+                    "name": "Rettenbach Glacier",
+                    "discipline": "GS",
+                    "length": 1350,
+                    "verticalDrop": 350
+                }
+            ],
+            "description": "Season opening venue on the Rettenbach Glacier, one of the highest World Cup venues.",
+            "coordinates": {
+                "lat": 46.9167,
+                "lng": 10.8667
+            }
+        },
+        {
+            "id": "levi",
+            "name": "Levi",
+            "country": "Finland",
+            "countryCode": "FIN",
+            "altitude": 531,
+            "courses": [
+                {
+                    "name": "Levi Black",
+                    "discipline": "SL",
+                    "length": 530,
+                    "verticalDrop": 180
+                }
+            ],
+            "description": "Arctic Circle venue known for its slalom races in November darkness.",
+            "coordinates": {
+                "lat": 67.8039,
+                "lng": 24.8269
+            }
+        },
+        {
+            "id": "beavercreek",
+            "name": "Beaver Creek",
+            "country": "USA",
+            "countryCode": "USA",
+            "altitude": 3488,
+            "courses": [
+                {
+                    "name": "Birds of Prey",
+                    "discipline": "DH",
+                    "length": 3018,
+                    "verticalDrop": 847
+                },
+                {
+                    "name": "Red Tail",
+                    "discipline": "GS",
+                    "length": 1300,
+                    "verticalDrop": 410
+                }
+            ],
+            "description": "Colorado venue hosting speed events on the challenging Birds of Prey course.",
+            "coordinates": {
+                "lat": 39.5873,
+                "lng": -106.5167
+            }
+        },
+        {
+            "id": "valdisere",
+            "name": "Val d'Isère",
+            "country": "France",
+            "countryCode": "FRA",
+            "altitude": 2900,
+            "courses": [
+                {
+                    "name": "Face de Bellevarde",
+                    "discipline": "GS",
+                    "length": 2850,
+                    "verticalDrop": 952
+                }
+            ],
+            "description": "Iconic French resort hosting the Critérium de la Première Neige since 1955.",
+            "coordinates": {
+                "lat": 45.4481,
+                "lng": 6.9819
+            }
+        },
+        {
+            "id": "gardena",
+            "name": "Val Gardena",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "altitude": 2518,
+            "courses": [
+                {
+                    "name": "Saslong",
+                    "discipline": "DH",
+                    "length": 3446,
+                    "verticalDrop": 839
+                }
+            ],
+            "description": "Dolomites classic with the famous Saslong downhill in the heart of South Tyrol.",
+            "coordinates": {
+                "lat": 46.5437,
+                "lng": 11.7668
+            }
+        },
+        {
+            "id": "altabadia",
+            "name": "Alta Badia",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "altitude": 1568,
+            "courses": [
+                {
+                    "name": "Gran Risa",
+                    "discipline": "GS",
+                    "length": 1300,
+                    "verticalDrop": 448
+                }
+            ],
+            "description": "Technical giant slalom on the famous Gran Risa slope.",
+            "coordinates": {
+                "lat": 46.5467,
+                "lng": 11.8475
+            }
+        },
+        {
+            "id": "bormio",
+            "name": "Bormio",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "altitude": 1225,
+            "courses": [
+                {
+                    "name": "Stelvio",
+                    "discipline": "DH",
+                    "length": 3195,
+                    "verticalDrop": 1010
+                }
+            ],
+            "description": "One of the most demanding downhill courses with the famous San Pietro jump.",
+            "coordinates": {
+                "lat": 46.4663,
+                "lng": 10.3708
+            }
+        },
+        {
+            "id": "adelboden",
+            "name": "Adelboden",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "altitude": 1353,
+            "courses": [
+                {
+                    "name": "Chuenisbärgli",
+                    "discipline": "GS",
+                    "length": 1270,
+                    "verticalDrop": 434
+                }
+            ],
+            "description": "Legendary Swiss venue with passionate fans lining the Chuenisbärgli.",
+            "coordinates": {
+                "lat": 46.4922,
+                "lng": 7.5603
+            }
+        },
+        {
+            "id": "wengen",
+            "name": "Wengen",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "altitude": 1287,
+            "courses": [
+                {
+                    "name": "Lauberhorn",
+                    "discipline": "DH",
+                    "length": 4480,
+                    "verticalDrop": 1028
+                }
+            ],
+            "description": "The longest and oldest downhill on the World Cup circuit since 1930.",
+            "coordinates": {
+                "lat": 46.6059,
+                "lng": 7.9222
+            }
+        },
+        {
+            "id": "kitzbuehel",
+            "name": "Kitzbühel",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "altitude": 1665,
+            "courses": [
+                {
+                    "name": "Streif",
+                    "discipline": "DH",
+                    "length": 3312,
+                    "verticalDrop": 862
+                },
+                {
+                    "name": "Ganslern",
+                    "discipline": "SL",
+                    "length": 680,
+                    "verticalDrop": 200
+                }
+            ],
+            "description": "The most famous ski race on earth. The Streif is skiing's ultimate challenge.",
+            "coordinates": {
+                "lat": 47.4464,
+                "lng": 12.3919
+            }
+        },
+        {
+            "id": "schladming",
+            "name": "Schladming",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "altitude": 1768,
+            "courses": [
+                {
+                    "name": "Planai",
+                    "discipline": "SL",
+                    "length": 730,
+                    "verticalDrop": 422
+                }
+            ],
+            "description": "Home of the legendary Night Race slalom with 50,000+ spectators.",
+            "coordinates": {
+                "lat": 47.3943,
+                "lng": 13.6858
+            }
+        },
+        {
+            "id": "garmisch",
+            "name": "Garmisch-Partenkirchen",
+            "country": "Germany",
+            "countryCode": "GER",
+            "altitude": 1719,
+            "courses": [
+                {
+                    "name": "Kandahar",
+                    "discipline": "DH",
+                    "length": 3050,
+                    "verticalDrop": 950
+                }
+            ],
+            "description": "Bavarian classic and 1936 Winter Olympics venue.",
+            "coordinates": {
+                "lat": 47.4400,
+                "lng": 11.0886
+            }
+        }
+    ]
+}

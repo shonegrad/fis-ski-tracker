@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Target, Mountain, Zap, BarChart3, Clock, Users, Trophy, TrendingUp } from 'lucide-react';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 import { AthleteImage } from './AthleteImage';
 
 interface DisciplinePageProps {

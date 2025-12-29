@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Mountain, Ruler, TrendingDown, Timer, Map, Thermometer, Cloud, Users, Target } from 'lucide-react';
-import { fallbackDataService } from '../services/fallbackDataService';
+import { fallbackDataService } from '../services/dataService';
 
 interface CourseDetailsProps {
   raceId: string;
