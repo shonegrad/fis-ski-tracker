@@ -143,19 +143,7 @@ export function SidebarNavigation({
           </div>
         </div>
 
-        {/* Disciplines */}
-        <div>
-          {!isCollapsed && (
-            <h3 className="text-xs font-semibold text-sidebar-foreground/50 uppercase tracking-wider mb-3">
-              Disciplines
-            </h3>
-          )}
-          <div className="space-y-1">
-            {disciplineItems.map((item) => (
-              <NavItem key={item.id} item={item} />
-            ))}
-          </div>
-        </div>
+
       </div>
 
       {/* Footer */}

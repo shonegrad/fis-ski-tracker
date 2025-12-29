@@ -1,0 +1,256 @@
+{
+    "season": "2024/2025",
+    "updatedAt": "2024-03-24",
+    "standings": [
+        {
+            "rank": 1,
+            "athleteId": "odermatt-marco",
+            "name": "Marco Odermatt",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "points": 1947,
+            "equipment": "Stoeckli",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 1,
+                    "points": 1947
+                },
+                "downhill": {
+                    "rank": 1,
+                    "points": 552
+                },
+                "slalom": null,
+                "giantSlalom": {
+                    "rank": 1,
+                    "points": 900
+                },
+                "superG": {
+                    "rank": 1,
+                    "points": 495
+                }
+            }
+        },
+        {
+            "rank": 2,
+            "athleteId": "sarrazin-cyprien",
+            "name": "Cyprien Sarrazin",
+            "country": "France",
+            "countryCode": "FRA",
+            "points": 934,
+            "equipment": "Rossignol",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 2,
+                    "points": 934
+                },
+                "downhill": {
+                    "rank": 2,
+                    "points": 510
+                },
+                "slalom": null,
+                "giantSlalom": null,
+                "superG": {
+                    "rank": 6,
+                    "points": 174
+                }
+            }
+        },
+        {
+            "rank": 3,
+            "athleteId": "feller-manuel",
+            "name": "Manuel Feller",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "points": 906,
+            "equipment": "Atomic",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 3,
+                    "points": 906
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 1,
+                    "points": 715
+                },
+                "giantSlalom": {
+                    "rank": 9,
+                    "points": 191
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 4,
+            "athleteId": "meillard-loic",
+            "name": "Loïc Meillard",
+            "country": "Switzerland",
+            "countryCode": "SUI",
+            "points": 1073,
+            "equipment": "Rossignol",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 2,
+                    "points": 1073
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 4,
+                    "points": 409
+                },
+                "giantSlalom": {
+                    "rank": 2,
+                    "points": 468
+                },
+                "superG": {
+                    "rank": 8,
+                    "points": 196
+                }
+            }
+        },
+        {
+            "rank": 5,
+            "athleteId": "strasser-linus",
+            "name": "Linus Straßer",
+            "country": "Germany",
+            "countryCode": "GER",
+            "points": 532,
+            "equipment": "Rossignol",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 9,
+                    "points": 532
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 2,
+                    "points": 526
+                },
+                "giantSlalom": null,
+                "superG": null
+            }
+        },
+        {
+            "rank": 6,
+            "athleteId": "kristoffersen-henrik",
+            "name": "Henrik Kristoffersen",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "points": 754,
+            "equipment": "Van Deer",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 4,
+                    "points": 754
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 6,
+                    "points": 359
+                },
+                "giantSlalom": {
+                    "rank": 4,
+                    "points": 395
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 7,
+            "athleteId": "mcgrath-atle",
+            "name": "Atle Lie McGrath",
+            "country": "Norway",
+            "countryCode": "NOR",
+            "points": 664,
+            "equipment": "Head",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 12,
+                    "points": 664
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 8,
+                    "points": 252
+                },
+                "giantSlalom": {
+                    "rank": 8,
+                    "points": 372
+                },
+                "superG": null
+            }
+        },
+        {
+            "rank": 8,
+            "athleteId": "kriechmayr-vincent",
+            "name": "Vincent Kriechmayr",
+            "country": "Austria",
+            "countryCode": "AUT",
+            "points": 707,
+            "equipment": "Head",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 6,
+                    "points": 707
+                },
+                "downhill": {
+                    "rank": 4,
+                    "points": 298
+                },
+                "slalom": null,
+                "giantSlalom": null,
+                "superG": {
+                    "rank": 2,
+                    "points": 409
+                }
+            }
+        },
+        {
+            "rank": 9,
+            "athleteId": "noel-clement",
+            "name": "Clément Noël",
+            "country": "France",
+            "countryCode": "FRA",
+            "points": 397,
+            "equipment": "Dynastar",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 16,
+                    "points": 397
+                },
+                "downhill": null,
+                "slalom": {
+                    "rank": 5,
+                    "points": 397
+                },
+                "giantSlalom": null,
+                "superG": null
+            }
+        },
+        {
+            "rank": 10,
+            "athleteId": "paris-dominik",
+            "name": "Dominik Paris",
+            "country": "Italy",
+            "countryCode": "ITA",
+            "points": 539,
+            "equipment": "Nordica",
+            "disciplineRanks": {
+                "overall": {
+                    "rank": 8,
+                    "points": 539
+                },
+                "downhill": {
+                    "rank": 3,
+                    "points": 342
+                },
+                "slalom": null,
+                "giantSlalom": null,
+                "superG": {
+                    "rank": 9,
+                    "points": 197
+                }
+            }
+        }
+    ]
+}

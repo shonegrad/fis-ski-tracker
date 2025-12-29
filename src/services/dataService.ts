@@ -6,15 +6,17 @@ import athletesData from '../data/seasons/2025-2026/athletes.json';
 import calendarData from '../data/seasons/2025-2026/calendar.json';
 import locationsData from '../data/locations.json';
 
+import standingsData24 from '../data/seasons/2024-2025/standings.json';
+import calendarData24 from '../data/seasons/2024-2025/calendar.json';
+
 import type { Season, Standing, Athlete, Race, Location } from './types';
 import { COUNTRY_CODES, DISCIPLINES } from './types';
 
 // Helper to get athlete photo URL - returns country flag since we don't have licensed real photos
 function getAthletePhoto(athleteId: string, countryCode?: string): string | null {
-    // We don't have real athlete photos - return null to trigger flag fallback in components
-    // Country flag URLs for fallback display
-    if (countryCode) {
-        const code = COUNTRY_CODES[countryCode] || countryCode.toLowerCase();
+    const code = (COUNTRY_CODES[countryCode || ''] || countryCode || '').toLowerCase();
+
+    if (code) {
         return `https://flagcdn.com/w160/${code}.png`;
     }
     return null;
@@ -22,22 +24,25 @@ function getAthletePhoto(athleteId: string, countryCode?: string): string | null
 
 // Get country flag URL
 function getCountryFlag(countryCode: string): string {
-    const code = COUNTRY_CODES[countryCode] || countryCode.toLowerCase();
+    const code = (COUNTRY_CODES[countryCode] || countryCode).toLowerCase();
     return `https://flagcdn.com/w160/${code}.png`;
 }
 
 // Convert standings to competitor format (for compatibility)
 function standingToCompetitor(standing: any, athletes: any[]) {
-    const athlete = athletes.find((a: any) => a.id === standing.athleteId) || {};
+    // For 24/25 we might not have the athletes file, but standings has most info
+    // For 25/26 we have athletes file
+    const athlete = athletes ? athletes.find((a: any) => a.id === standing.athleteId) : null;
+
     return {
         id: standing.athleteId,
         name: standing.name,
         country: standing.country,
-        age: athlete.age || 25,
-        disciplines: athlete.disciplines || ['Giant Slalom'],
+        age: athlete?.age || 25,
+        disciplines: athlete?.disciplines || ['Giant Slalom'],
         worldCupPoints: standing.points,
         rank: standing.rank,
-        image: getAthletePhoto(standing.athleteId),
+        image: getAthletePhoto(standing.athleteId, standing.countryCode || standing.country),
         equipment: standing.equipment,
     };
 }
@@ -87,12 +92,11 @@ function getLocationImage(location: string): string {
 // Main data service class (matches fallbackDataService interface)
 class DataService {
     async getRaces(season: Season): Promise<any[]> {
-        // For now, only 2025/2026 has real data
         if (season === '2025/2026') {
             return calendarData.races.map(raceToLegacy);
         }
-        // Fallback for 2024/2025 (last season)
-        return this.get2024Races();
+        // Use real 24/25 data
+        return calendarData24.races.map(raceToLegacy);
     }
 
     async getCompetitors(season: Season): Promise<any[]> {
@@ -101,8 +105,11 @@ class DataService {
                 standingToCompetitor(s, athletesData.athletes)
             );
         }
-        // Fallback for 2024/2025
-        return this.get2024Competitors();
+        // Use real 24/25 data
+        // For 24/25 we only have standings, so pass [] or null for athletes list
+        return standingsData24.standings.map((s: any) =>
+            standingToCompetitor(s, [])
+        );
     }
 
     async getLocations(season: Season): Promise<any[]> {
@@ -113,10 +120,36 @@ class DataService {
     }
 
     async getCompetitorDetails(competitorId: string): Promise<any> {
-        const athlete = athletesData.athletes.find((a: any) => a.id === competitorId);
-        const standing = standingsData.standings.find((s: any) => s.athleteId === competitorId);
+        // Try to find in 25/26 data first
+        let athlete = athletesData.athletes.find((a: any) => a.id === competitorId);
+        let standing = standingsData.standings.find((s: any) => s.athleteId === competitorId);
+
+        // If not found, try 24/25 standings
+        if (!athlete && !standing) {
+            standing = standingsData24.standings.find((s: any) => s.athleteId === competitorId);
+        }
 
         if (!athlete) {
+            // Fallback info from standing if available
+            if (standing) {
+                return {
+                    id: standing.athleteId,
+                    name: standing.name,
+                    country: standing.country,
+                    age: 25, // Default if unknown
+                    disciplines: ['Giant Slalom'], // Default
+                    worldCupWins: 0,
+                    olympicMedals: 0,
+                    worldChampionships: 0,
+                    height: 'Unknown',
+                    weight: 'Unknown',
+                    birthDate: 'Unknown',
+                    birthPlace: 'Unknown',
+                    worldCupDebut: 'Unknown',
+                    image: getAthletePhoto(standing.athleteId, standing.countryCode || standing.country),
+                };
+            }
+
             // Fallback to basic info
             return {
                 id: competitorId,
@@ -177,7 +210,7 @@ class DataService {
     }
 
     async getCourseDetails(raceId: string): Promise<any> {
-        const race = calendarData.races.find((r: any) => r.id === raceId);
+        const race = calendarData.races.find((r: any) => r.id === raceId) || calendarData24.races.find((r: any) => r.id === raceId);
         const location = locationsData.locations.find((l: any) =>
             l.name.toLowerCase().includes(race?.location?.toLowerCase() || '')
         );
@@ -217,22 +250,6 @@ class DataService {
                 { day: 'Day 3', high: -6, low: -14, condition: 'Snow', windSpeed: 20 },
             ],
         };
-    }
-
-    // 2024/2025 season data (simplified)
-    private get2024Races() {
-        return [
-            { id: '2024-soelden-gs', name: 'Giant Slalom', location: 'Sölden', country: 'Austria', date: '2023-10-28', discipline: 'Giant Slalom', status: 'completed', image: getLocationImage('Sölden') },
-            { id: '2024-levi-sl', name: 'Slalom', location: 'Levi', country: 'Finland', date: '2023-11-12', discipline: 'Slalom', status: 'completed', image: getLocationImage('Levi') },
-        ];
-    }
-
-    private get2024Competitors() {
-        return [
-            { id: 'odermatt-marco', name: 'Marco Odermatt', country: 'Switzerland', age: 26, disciplines: ['Downhill', 'Giant Slalom', 'Super G'], worldCupPoints: 2042, rank: 1, image: getAthletePhoto('odermatt-marco', 'SUI') },
-            { id: 'schwarz-marco', name: 'Marco Schwarz', country: 'Austria', age: 28, disciplines: ['Slalom', 'Giant Slalom', 'Super G'], worldCupPoints: 968, rank: 2, image: getAthletePhoto('schwarz-marco', 'AUT') },
-            { id: 'kristoffersen-henrik', name: 'Henrik Kristoffersen', country: 'Norway', age: 29, disciplines: ['Slalom', 'Giant Slalom'], worldCupPoints: 845, rank: 3, image: getAthletePhoto('kristoffersen-henrik', 'NOR') },
-        ];
     }
 
     async getPhotos(raceId?: string, competitorId?: string): Promise<any[]> {

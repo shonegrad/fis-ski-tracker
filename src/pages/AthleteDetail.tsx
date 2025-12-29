@@ -105,18 +105,21 @@ export default function AthleteDetail() {
             <Card className="overflow-hidden">
                 <div className="bg-gradient-to-r from-primary/20 to-primary/5 p-6">
                     <div className="flex items-start gap-6">
-                        <AthleteImage
-                            athleteId={athlete.id}
-                            athleteName={athlete.name}
-                            size="lg"
-                            className="ring-4 ring-background shadow-xl"
-                        />
+                        <div className="relative">
+                            <img
+                                src={`https://flagcdn.com/w160/${getCountryCode(athlete.country)}.png`}
+                                alt={athlete.country}
+                                className="w-20 h-auto rounded-lg shadow-md"
+                            />
+                        </div>
                         <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
                                 <h1 className="text-3xl font-bold">{athlete.name}</h1>
-                                <span className="text-3xl">{flagEmoji}</span>
+                                <Badge variant="outline" className="text-lg px-3 py-1 bg-background/50 backdrop-blur-sm">
+                                    {flagEmoji} {athlete.country}
+                                </Badge>
                             </div>
-                            <p className="text-lg text-muted-foreground mb-4">{athlete.country} • {athlete.age} years old</p>
+                            <p className="text-lg text-muted-foreground mb-4">{athlete.age} years old • World Cup Competitor</p>
                             <div className="flex flex-wrap gap-2">
                                 {athlete.disciplines.map((discipline) => (
                                     <Badge key={discipline} variant="secondary" className="text-sm">
@@ -127,7 +130,7 @@ export default function AthleteDetail() {
                         </div>
                         <div className="text-right">
                             <div className="text-4xl font-bold text-primary">#{athlete.rank}</div>
-                            <div className="text-sm text-muted-foreground">World Ranking</div>
+                            <div className="text-sm text-muted-foreground mr-1">World Ranking</div>
                         </div>
                     </div>
                 </div>
@@ -201,9 +204,9 @@ export default function AthleteDetail() {
                             >
                                 <div className="flex items-center gap-4">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${result.rank === 1 ? 'bg-yellow-500/20 text-yellow-600' :
-                                            result.rank === 2 ? 'bg-gray-300/30 text-gray-600' :
-                                                result.rank === 3 ? 'bg-orange-500/20 text-orange-600' :
-                                                    'bg-muted text-muted-foreground'
+                                        result.rank === 2 ? 'bg-gray-300/30 text-gray-600' :
+                                            result.rank === 3 ? 'bg-orange-500/20 text-orange-600' :
+                                                'bg-muted text-muted-foreground'
                                         }`}>
                                         {result.rank}
                                     </div>
