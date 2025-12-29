@@ -32,14 +32,29 @@ const disciplineNames = {
 const getCountryCode = (country: string): string => {
   const countryMap: Record<string, string> = {
     'Switzerland': 'ch',
+    'Austria': 'at',
     'Norway': 'no',
     'France': 'fr',
-    'Croatia': 'hr',
-    'Austria': 'at',
-    'Brazil': 'br',
     'Italy': 'it',
     'Germany': 'de',
-    'USA': 'us'
+    'USA': 'us',
+    'Canada': 'ca',
+    'Sweden': 'se',
+    'Slovenia': 'si',
+    'Croatia': 'hr',
+    'Brazil': 'br',
+    'Finland': 'fi',
+    'Great Britain': 'gb',
+    'Japan': 'jp',
+    'China': 'cn',
+    'Poland': 'pl',
+    'Czechia': 'cz',
+    'Slovakia': 'sk',
+    'Belgium': 'be',
+    'Netherlands': 'nl',
+    'Spain': 'es',
+    'Andorra': 'ad',
+    'Liechtenstein': 'li'
   };
   return countryMap[country] || 'us';
 };
@@ -371,7 +386,7 @@ export function EnhancedCompetitorList({
                     </div>
                     <div className="flex items-center gap-2">
                       <img
-                        src={competitor.image}
+                        src={competitor.image || `https://flagcdn.com/w160/${getCountryCode(competitor.country)}.png`}
                         alt={competitor.country}
                         className="w-8 h-auto rounded shadow-sm"
                       />
