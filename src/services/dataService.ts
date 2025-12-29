@@ -44,6 +44,10 @@ function standingToCompetitor(standing: any, athletes: any[]) {
 
 // Convert race format for compatibility
 function raceToLegacy(race: any) {
+    // Find location ID from locations data
+    const locationObj = locationsData.locations.find(l => l.name === race.location);
+    const locationId = locationObj?.id || race.location.toLowerCase().replace(/[^a-z0-9]/g, '');
+
     return {
         id: race.id,
         name: race.name,
@@ -55,6 +59,7 @@ function raceToLegacy(race: any) {
         category: race.category,
         gender: race.gender,
         image: getLocationImage(race.location),
+        locationId: locationId,
     };
 }
 
