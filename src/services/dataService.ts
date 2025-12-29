@@ -23,9 +23,15 @@ function getAthletePhoto(athleteId: string, countryCode?: string): string | null
 }
 
 // Get country flag URL
-function getCountryFlag(countryCode: string): string {
+export function getCountryFlag(countryCode: string): string {
     const code = (COUNTRY_CODES[countryCode] || countryCode).toLowerCase();
     return `https://flagcdn.com/w160/${code}.png`;
+}
+
+// Get country code helper
+export function getCountryCode(country: string): string {
+    const code = COUNTRY_CODES[country] || COUNTRY_CODES[country.toUpperCase()] || 'us';
+    return code.toLowerCase();
 }
 
 // Convert standings to competitor format (for compatibility)

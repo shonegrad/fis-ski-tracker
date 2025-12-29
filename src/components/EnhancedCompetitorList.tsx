@@ -5,8 +5,8 @@ import { Button } from "./ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { ArrowLeft, Trophy, User, Award, TrendingUp, BarChart3, Calendar, Target } from 'lucide-react';
-import { fallbackDataService } from '../services/dataService';
-import { AthleteImage } from './AthleteImage';
+import { fallbackDataService, getCountryCode } from '../services/dataService';
+
 
 export interface Competitor {
   id: string;
@@ -28,36 +28,7 @@ const disciplineNames = {
   'SL': 'Slalom'
 };
 
-// Helper function to get country code for flag
-const getCountryCode = (country: string): string => {
-  const countryMap: Record<string, string> = {
-    'Switzerland': 'ch',
-    'Austria': 'at',
-    'Norway': 'no',
-    'France': 'fr',
-    'Italy': 'it',
-    'Germany': 'de',
-    'USA': 'us',
-    'Canada': 'ca',
-    'Sweden': 'se',
-    'Slovenia': 'si',
-    'Croatia': 'hr',
-    'Brazil': 'br',
-    'Finland': 'fi',
-    'Great Britain': 'gb',
-    'Japan': 'jp',
-    'China': 'cn',
-    'Poland': 'pl',
-    'Czechia': 'cz',
-    'Slovakia': 'sk',
-    'Belgium': 'be',
-    'Netherlands': 'nl',
-    'Spain': 'es',
-    'Andorra': 'ad',
-    'Liechtenstein': 'li'
-  };
-  return countryMap[country] || 'us';
-};
+
 
 interface EnhancedCompetitorListProps {
   selectedSeason: '2024/2025' | '2025/2026';

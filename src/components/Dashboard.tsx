@@ -6,13 +6,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Alert, AlertDescription } from './ui/alert';
 import { Skeleton } from './ui/skeleton';
 import { Progress } from './ui/progress';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   LineChart,
   Line,
@@ -25,13 +25,13 @@ import {
 import { LocationList } from './LocationList';
 import { EnhancedRaceResults } from './EnhancedRaceResults';
 import { EnhancedCompetitorList } from './EnhancedCompetitorList';
-import { AthleteImage } from './AthleteImage';
-import { 
-  Trophy, 
-  MapPin, 
-  Users, 
-  Calendar, 
-  AlertCircle, 
+
+import {
+  Trophy,
+  MapPin,
+  Users,
+  Calendar,
+  AlertCircle,
   Bell,
   BellOff,
   Camera,
@@ -46,7 +46,7 @@ import {
 } from 'lucide-react';
 import { notificationService } from '../services/notificationService';
 import { projectId, publicAnonKey, isConfigured } from '../utils/supabase/info';
-import { fallbackDataService } from '../services/dataService';
+import { fallbackDataService, getCountryCode } from '../services/dataService';
 
 interface Race {
   id: string;
@@ -101,7 +101,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
   useEffect(() => {
     fetchDashboardData();
     checkNotificationStatus();
-    
+
     // Set up periodic updates for live races
     const interval = setInterval(checkForLiveRaces, 30000); // Check every 30 seconds
     return () => clearInterval(interval);
@@ -145,7 +145,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
     setRaces(racesData);
     setLocations(locationsData);
     setCompetitors(competitorsData);
-    
+
     // Update live races (none in fallback data)
     const live = racesData.filter((race: Race) => race.status === 'live');
     setLiveRaces(live);
@@ -153,9 +153,9 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
 
   const enableNotifications = async () => {
     setNotificationError(null);
-    
+
     const result = await notificationService.subscribeToPushNotifications();
-    
+
     if (result.subscription) {
       setNotificationEnabled(true);
       notificationService.showLocalNotification({
@@ -178,16 +178,16 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
 
   if (selectedRace) {
     return (
-      <EnhancedRaceResults 
-        race={selectedRace} 
-        onBack={() => setSelectedRace(null)} 
+      <EnhancedRaceResults
+        race={selectedRace}
+        onBack={() => setSelectedRace(null)}
       />
     );
   }
 
   if (selectedCompetitor) {
     return (
-      <EnhancedCompetitorList 
+      <EnhancedCompetitorList
         selectedSeason={selectedSeason}
         selectedCompetitorId={selectedCompetitor}
         onBack={() => setSelectedCompetitor(null)}
@@ -224,8 +224,8 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
           </div>
           <AlertDescription className="text-on-error-container">
             <strong>Live Now:</strong> {liveRaces.map(race => `${race.name} in ${race.location}`).join(', ')}
-            <Button 
-              variant="link" 
+            <Button
+              variant="link"
               className="ml-2 p-0 h-auto text-error underline hover:text-error/80"
               onClick={() => setSelectedRace(liveRaces[0])}
             >
@@ -241,9 +241,9 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
           <AlertCircle className="h-4 w-4 text-error" />
           <AlertDescription className="flex items-center justify-between">
             <span className="text-on-error-container">{notificationError}</span>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={dismissNotificationError}
               className="border-error text-error hover:bg-error/10"
             >
@@ -259,9 +259,9 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
           <Bell className="h-4 w-4 text-primary" />
           <AlertDescription className="flex items-center justify-between">
             <span className="text-on-primary-container">Enable notifications to get live race updates and results</span>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={enableNotifications}
               className="border-primary text-primary hover:bg-primary/10"
             >
@@ -278,9 +278,9 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
           <Bell className="h-4 w-4 text-success" />
           <AlertDescription className="flex items-center justify-between">
             <span className="text-on-success-container">Notifications are enabled - you'll receive live race updates</span>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={async () => {
                 const result = await notificationService.unsubscribeFromPushNotifications();
                 if (result.success) {
@@ -305,7 +305,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
 
       {/* Interactive Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <Card 
+        <Card
           className="rounded-2xl bg-surface-container-low elevation-1 border-0 hover:elevation-2 transition-all duration-200 cursor-pointer group"
           onClick={() => setActiveTab('races')}
         >
@@ -323,7 +323,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
           </CardContent>
         </Card>
 
-        <Card 
+        <Card
           className="rounded-2xl bg-surface-container-low elevation-1 border-0 hover:elevation-2 transition-all duration-200 cursor-pointer group"
           onClick={() => setActiveTab('races')}
         >
@@ -341,7 +341,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
           </CardContent>
         </Card>
 
-        <Card 
+        <Card
           className="rounded-2xl bg-surface-container-low elevation-1 border-0 hover:elevation-2 transition-all duration-200 cursor-pointer group"
           onClick={() => onViewChange?.('locations')}
         >
@@ -359,7 +359,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
           </CardContent>
         </Card>
 
-        <Card 
+        <Card
           className="rounded-2xl bg-surface-container-low elevation-1 border-0 hover:elevation-2 transition-all duration-200 cursor-pointer group"
           onClick={() => onViewChange?.('athletes')}
         >
@@ -425,8 +425,8 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                     <CartesianGrid strokeDasharray="3 3" stroke="#E0E3E7" />
                     <XAxis dataKey="discipline" tick={{ fontSize: 12 }} />
                     <YAxis tick={{ fontSize: 12 }} />
-                    <Tooltip 
-                      contentStyle={{ 
+                    <Tooltip
+                      contentStyle={{
                         backgroundColor: 'var(--card)',
                         border: '1px solid var(--border)',
                         borderRadius: '12px',
@@ -458,7 +458,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                     </div>
                     <Progress value={(completedRaces.length / races.length) * 100} className="h-3" />
                   </div>
-                  
+
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <span className="body-medium text-on-surface">Active Locations</span>
@@ -466,7 +466,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                     </div>
                     <Progress value={(locations.length / 15) * 100} className="h-3" />
                   </div>
-                  
+
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <span className="body-medium text-on-surface">Registered Athletes</span>
@@ -490,14 +490,14 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                     ]}>
                       <defs>
                         <linearGradient id="colorRaces" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#1565C0" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#1565C0" stopOpacity={0.1}/>
+                          <stop offset="5%" stopColor="#1565C0" stopOpacity={0.8} />
+                          <stop offset="95%" stopColor="#1565C0" stopOpacity={0.1} />
                         </linearGradient>
                       </defs>
                       <XAxis dataKey="month" tick={{ fontSize: 12 }} />
                       <YAxis hide />
-                      <Tooltip 
-                        contentStyle={{ 
+                      <Tooltip
+                        contentStyle={{
                           backgroundColor: 'var(--card)',
                           border: '1px solid var(--border)',
                           borderRadius: '8px'
@@ -526,8 +526,8 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                 <CardContent>
                   <div className="space-y-3">
                     {completedRaces.slice(0, 5).map((race) => (
-                      <div 
-                        key={race.id} 
+                      <div
+                        key={race.id}
                         className="flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-all duration-200 hover:elevation-1"
                         onClick={() => setSelectedRace(race)}
                       >
@@ -561,20 +561,19 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
               <CardContent>
                 <div className="space-y-3">
                   {competitors.slice(0, 5).map((competitor) => (
-                    <div 
-                      key={competitor.id} 
+                    <div
+                      key={competitor.id}
                       className="flex items-center gap-4 p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-all duration-200 hover:elevation-1"
                       onClick={() => setSelectedCompetitor(competitor.id)}
                     >
                       <div className="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
                         <span className="label-medium text-on-primary-container font-bold">#{competitor.rank}</span>
                       </div>
-                      <AthleteImage
-                        athleteId={competitor.id}
-                        athleteName={competitor.name}
-                        className="w-12 h-12 rounded-xl"
-                        width={48}
-                        height={48}
+                      <img
+                        src={`https://flagcdn.com/w80/${getCountryCode(competitor.country)}.png`}
+                        alt={competitor.country}
+                        className="w-12 h-12 rounded-xl object-cover shadow-sm"
+                        style={{ aspectRatio: '4/3' }}
                       />
                       <div className="flex-1">
                         <p className="body-large text-on-surface font-medium">{competitor.name}</p>
@@ -627,20 +626,20 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                     const daysUntil = Math.ceil((raceDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
 
                     return (
-                      <div 
-                        key={race.id} 
+                      <div
+                        key={race.id}
                         className="group relative overflow-hidden rounded-xl bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-all duration-300 hover:elevation-2 border border-outline-variant/20 hover:border-primary/30"
                         onClick={() => setSelectedRace(race)}
                       >
                         {/* Gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        
+
                         <div className="relative p-4 flex items-center gap-4">
                           {/* Discipline Icon */}
                           <div className={`w-12 h-12 rounded-xl ${disciplineColor} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
                             <DisciplineIcon className="w-5 h-5" />
                           </div>
-                          
+
                           {/* Race Information */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-3">
@@ -661,29 +660,28 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                                   </p>
                                 </div>
                               </div>
-                              
+
                               {/* Date and Status */}
                               <div className="text-right flex-shrink-0">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <Badge className={`${
-                                    isUpcoming 
-                                      ? 'bg-success-container text-on-success-container' 
+                                  <Badge className={`${isUpcoming
+                                      ? 'bg-success-container text-on-success-container'
                                       : 'bg-warning-container text-on-warning-container'
-                                  } border-0 rounded-lg label-small px-2 py-1`}>
+                                    } border-0 rounded-lg label-small px-2 py-1`}>
                                     {isUpcoming ? 'Scheduled' : 'Past'}
                                   </Badge>
                                 </div>
                                 <p className="body-small text-on-surface font-medium">
-                                  {raceDate.toLocaleDateString('en-US', { 
-                                    month: 'short', 
-                                    day: 'numeric' 
+                                  {raceDate.toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    day: 'numeric'
                                   })}
                                 </p>
                                 {isUpcoming && daysUntil <= 30 && (
                                   <p className="body-small text-primary font-medium">
-                                    {daysUntil === 0 ? 'Today' : 
-                                     daysUntil === 1 ? 'Tomorrow' : 
-                                     `${daysUntil} days`}
+                                    {daysUntil === 0 ? 'Today' :
+                                      daysUntil === 1 ? 'Tomorrow' :
+                                        `${daysUntil} days`}
                                   </p>
                                 )}
                               </div>
@@ -705,8 +703,8 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                       <p className="body-small text-on-surface-variant">
                         Showing 5 of {upcomingRaces.length} upcoming races
                       </p>
-                      <Button 
-                        variant="ghost" 
+                      <Button
+                        variant="ghost"
                         size="sm"
                         onClick={() => setActiveTab('races')}
                         className="text-primary hover:text-primary hover:bg-primary/10 body-small"
@@ -757,8 +755,8 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
         <TabsContent value="races" className="mt-6">
           <div className="space-y-4">
             {races.map((race) => (
-              <Card 
-                key={race.id} 
+              <Card
+                key={race.id}
                 className="cursor-pointer hover:bg-muted/50 transition-colors"
                 onClick={() => setSelectedRace(race)}
               >
@@ -773,8 +771,8 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge variant={
-                        race.status === 'completed' ? 'default' : 
-                        race.status === 'live' ? 'destructive' : 'secondary'
+                        race.status === 'completed' ? 'default' :
+                          race.status === 'live' ? 'destructive' : 'secondary'
                       }>
                         {race.status}
                       </Badge>
@@ -788,7 +786,7 @@ export function Dashboard({ selectedSeason, onViewChange }: DashboardProps) {
         </TabsContent>
 
         <TabsContent value="competitors" className="mt-6">
-          <EnhancedCompetitorList 
+          <EnhancedCompetitorList
             selectedSeason={selectedSeason}
             onCompetitorSelect={setSelectedCompetitor}
           />

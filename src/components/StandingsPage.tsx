@@ -4,11 +4,11 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Progress } from './ui/progress';
-import { 
-  Trophy, 
-  Medal, 
-  TrendingUp, 
-  TrendingDown, 
+import {
+  Trophy,
+  Medal,
+  TrendingUp,
+  TrendingDown,
   Minus,
   Crown,
   Target,
@@ -18,21 +18,20 @@ import {
   Users,
   Award
 } from 'lucide-react';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   LineChart,
   Line,
   Area,
   AreaChart
 } from 'recharts';
-import { fallbackDataService } from '../services/dataService';
-import { AthleteImage } from './AthleteImage';
+import { fallbackDataService, getCountryCode } from '../services/dataService';
 
 interface Competitor {
   id: string;
@@ -58,21 +57,7 @@ const disciplineColors: Record<string, string> = {
   'downhill': 'bg-error-container text-on-error-container'
 };
 
-// Helper function to get country code for flag
-const getCountryCode = (country: string): string => {
-  const countryMap: Record<string, string> = {
-    'Switzerland': 'ch',
-    'Norway': 'no',
-    'France': 'fr',
-    'Croatia': 'hr',
-    'Austria': 'at',
-    'Brazil': 'br',
-    'Italy': 'it',
-    'Germany': 'de',
-    'USA': 'us'
-  };
-  return countryMap[country] || 'us';
-};
+
 
 export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPageProps) {
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
@@ -129,13 +114,13 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
   };
 
   // Filter competitors by discipline
-  const filteredCompetitors = selectedDiscipline === 'overall' 
-    ? competitors 
-    : competitors.filter(c => 
-        c.disciplines.some(d => 
-          d.toLowerCase().includes(selectedDiscipline.replace('-', ' '))
-        )
-      ).sort((a, b) => b.worldCupPoints - a.worldCupPoints);
+  const filteredCompetitors = selectedDiscipline === 'overall'
+    ? competitors
+    : competitors.filter(c =>
+      c.disciplines.some(d =>
+        d.toLowerCase().includes(selectedDiscipline.replace('-', ' '))
+      )
+    ).sort((a, b) => b.worldCupPoints - a.worldCupPoints);
 
   // Top performers for charts
   const topPerformers = filteredCompetitors.slice(0, 10).map(c => ({
@@ -151,7 +136,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
       acc[key] = (acc[key] || 0) + Math.floor(competitor.worldCupPoints * Math.random() * 0.3);
       return acc;
     }, {});
-    
+
     return {
       name: competitor.name.split(' ').pop() || competitor.name,
       slalom: disciplines.slalom || 0,
@@ -189,7 +174,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
           </h1>
           <p className="text-muted-foreground mt-1">{selectedSeason} FIS Alpine World Cup Rankings</p>
         </div>
-        
+
         <div className="flex items-center gap-4">
           <Badge variant="outline" className="flex items-center gap-2">
             <Users className="w-4 h-4" />
@@ -204,22 +189,21 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
           <CardContent className="p-6">
             <div className="flex items-center gap-6">
               <div className="relative">
-                <AthleteImage
-                  athleteId={leader.id}
-                  athleteName={leader.name}
-                  className="w-24 h-24 rounded-2xl border-4 border-yellow-300 shadow-lg"
-                  width={96}
-                  height={96}
+                <img
+                  src={`https://flagcdn.com/w160/${getCountryCode(leader.country)}.png`}
+                  alt={leader.country}
+                  className="w-24 h-24 rounded-2xl border-4 border-yellow-300 shadow-lg object-cover"
+                  style={{ aspectRatio: '4/3' }}
                 />
                 <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
                   <Crown className="w-4 h-4 text-yellow-800" />
                 </div>
               </div>
-              
+
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h2 className="text-3xl font-bold text-foreground">{leader.name}</h2>
-                  <img 
+                  <img
                     src={`https://flagcdn.com/24x18/${getCountryCode(leader.country)}.png`}
                     alt={leader.country}
                     className="rounded shadow-sm"
@@ -243,7 +227,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                   </div>
                 </div>
               </div>
-              
+
               <div className="text-center">
                 <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/50 rounded-2xl flex items-center justify-center mb-2">
                   <Trophy className="w-8 h-8 text-yellow-600" />
@@ -274,7 +258,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
               {['slalom', 'giant-slalom', 'super-g', 'downhill'].map(discipline => {
                 const Icon = getDisciplineIcon(discipline.replace('-', ' '));
                 const disciplineName = discipline.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
-                
+
                 return (
                   <Button
                     key={discipline}
@@ -301,16 +285,16 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={topPerformers}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#E0E3E7" />
-                  <XAxis 
-                    dataKey="name" 
+                  <XAxis
+                    dataKey="name"
                     tick={{ fontSize: 12 }}
                     angle={-45}
                     textAnchor="end"
                     height={60}
                   />
                   <YAxis tick={{ fontSize: 12 }} />
-                  <Tooltip 
-                    contentStyle={{ 
+                  <Tooltip
+                    contentStyle={{
                       backgroundColor: 'var(--card)',
                       border: '1px solid var(--border)',
                       borderRadius: '12px',
@@ -334,8 +318,8 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                   <CartesianGrid strokeDasharray="3 3" stroke="#E0E3E7" />
                   <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                   <YAxis tick={{ fontSize: 12 }} />
-                  <Tooltip 
-                    contentStyle={{ 
+                  <Tooltip
+                    contentStyle={{
                       backgroundColor: 'var(--card)',
                       border: '1px solid var(--border)',
                       borderRadius: '12px'
@@ -367,7 +351,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                 'bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950/20 dark:to-gray-900/20',
                 'bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20'
               ];
-              
+
               return (
                 <div
                   key={athlete.id}
@@ -377,31 +361,30 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                   <div className="text-center">
                     <div className="text-2xl font-bold mb-2">{positions[index]}</div>
                     <div className="relative inline-block mb-4">
-                      <AthleteImage
-                        athleteId={athlete.id}
-                        athleteName={athlete.name}
-                        className="w-20 h-20 rounded-2xl border-4 border-white shadow-lg mx-auto"
-                        width={80}
-                        height={80}
+                      <img
+                        src={`https://flagcdn.com/w160/${getCountryCode(athlete.country)}.png`}
+                        alt={athlete.country}
+                        className="w-20 h-20 rounded-2xl border-4 border-white shadow-lg mx-auto object-cover"
+                        style={{ aspectRatio: '4/3' }}
                       />
                       <div className="absolute -top-2 -right-2">
                         {getTrendIcon(trend)}
                       </div>
                     </div>
-                    
+
                     <div className="bg-black/70 rounded-xl px-3 py-2 backdrop-blur-sm inline-block mb-2">
                       <h3 className="font-bold text-white">{athlete.name}</h3>
                     </div>
-                    
+
                     <div className="flex items-center justify-center gap-2 mb-3">
-                      <img 
+                      <img
                         src={`https://flagcdn.com/20x15/${getCountryCode(athlete.country)}.png`}
                         alt={athlete.country}
                         className="rounded shadow-sm"
                       />
                       <span className="text-sm text-muted-foreground">{athlete.country}</span>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <div>
                         <div className="text-xl font-bold text-primary">{athlete.worldCupPoints}</div>
@@ -409,9 +392,9 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                       </div>
                       <div className="flex justify-center gap-1 flex-wrap">
                         {athlete.disciplines.slice(0, 2).map(discipline => (
-                          <Badge 
-                            key={discipline} 
-                            variant="secondary" 
+                          <Badge
+                            key={discipline}
+                            variant="secondary"
                             className="text-xs px-2 py-1"
                           >
                             {discipline.slice(0, 3)}
@@ -444,7 +427,7 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
             {filteredCompetitors.map((athlete, index) => {
               const trend = getRankTrend(athlete.rank, athlete.previousRank);
               const isTopThree = index < 3;
-              
+
               return (
                 <div
                   key={athlete.id}
@@ -468,20 +451,19 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
 
                     {/* Athlete Info */}
                     <div className="flex items-center gap-3 flex-1">
-                      <AthleteImage
-                        athleteId={athlete.id}
-                        athleteName={athlete.name}
-                        className="w-12 h-12 rounded-xl"
-                        width={48}
-                        height={48}
+                      <img
+                        src={`https://flagcdn.com/w80/${getCountryCode(athlete.country)}.png`}
+                        alt={athlete.country}
+                        className="w-12 h-12 rounded-xl object-cover shadow-sm"
+                        style={{ aspectRatio: '4/3' }}
                       />
-                      
+
                       <div className="flex-1 min-w-0">
                         <div className="bg-black/70 rounded-lg px-2 py-1 backdrop-blur-sm inline-block mb-1">
                           <h3 className="font-medium text-white truncate">{athlete.name}</h3>
                         </div>
                         <div className="flex items-center gap-2">
-                          <img 
+                          <img
                             src={`https://flagcdn.com/16x12/${getCountryCode(athlete.country)}.png`}
                             alt={athlete.country}
                             className="rounded shadow-sm"
@@ -497,17 +479,17 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                         <div className="text-lg font-bold text-primary">{athlete.worldCupPoints}</div>
                         <div className="text-xs text-muted-foreground">Points</div>
                       </div>
-                      
+
                       <div className="text-center">
                         <div className="text-lg font-bold">{athlete.age}</div>
                         <div className="text-xs text-muted-foreground">Age</div>
                       </div>
-                      
+
                       <div className="hidden md:flex gap-1">
                         {athlete.disciplines.slice(0, 3).map(discipline => (
-                          <Badge 
-                            key={discipline} 
-                            variant="outline" 
+                          <Badge
+                            key={discipline}
+                            variant="outline"
                             className="text-xs px-2 py-1"
                           >
                             {discipline.slice(0, 3)}
@@ -519,8 +501,8 @@ export function StandingsPage({ selectedSeason, onAthleteSelect }: StandingsPage
                     {/* Points Progress */}
                     <div className="w-24 hidden lg:block">
                       <div className="text-xs text-muted-foreground mb-1">Season Progress</div>
-                      <Progress 
-                        value={(athlete.worldCupPoints / (filteredCompetitors[0]?.worldCupPoints || 1)) * 100} 
+                      <Progress
+                        value={(athlete.worldCupPoints / (filteredCompetitors[0]?.worldCupPoints || 1)) * 100}
                         className="h-2"
                       />
                     </div>

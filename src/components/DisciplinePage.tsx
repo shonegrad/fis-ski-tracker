@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Target, Mountain, Zap, BarChart3, Clock, Users, Trophy, TrendingUp } from 'lucide-react';
-import { fallbackDataService } from '../services/dataService';
-import { AthleteImage } from './AthleteImage';
+import { fallbackDataService, getCountryCode } from '../services/dataService';
+
 
 interface DisciplinePageProps {
   discipline: string;
@@ -122,14 +122,14 @@ export function DisciplinePage({ discipline, selectedSeason, onBack }: Disciplin
 
         // Filter races by discipline
         const disciplineName = disciplineInfo?.name || '';
-        const filteredRaces = raceData.filter(race => 
+        const filteredRaces = raceData.filter(race =>
           race.discipline.toLowerCase().includes(discipline.replace('-', ' ')) ||
           race.discipline.toLowerCase() === disciplineName.toLowerCase()
         );
 
         // Filter athletes who compete in this discipline
         const filteredAthletes = athleteData.filter(athlete =>
-          athlete.disciplines.some((d: string) => 
+          athlete.disciplines.some((d: string) =>
             d.toLowerCase().includes(discipline.replace('-', ' ')) ||
             d.toLowerCase() === disciplineName.toLowerCase()
           )
@@ -229,7 +229,7 @@ export function DisciplinePage({ discipline, selectedSeason, onBack }: Disciplin
             <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
               <h2 className="text-2xl font-bold mb-4">About {disciplineInfo.name}</h2>
               <p className="text-muted-foreground mb-6 leading-relaxed">{disciplineInfo.technique}</p>
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold mb-3 text-lg">Key Characteristics</h3>
@@ -276,11 +276,10 @@ export function DisciplinePage({ discipline, selectedSeason, onBack }: Disciplin
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-medium text-foreground">{new Date(race.date).toLocaleDateString()}</p>
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            race.status === 'completed' ? 'bg-success-container text-success-foreground' :
-                            race.status === 'live' ? 'bg-warning-container text-warning-foreground' :
-                            'bg-muted text-muted-foreground'
-                          }`}>
+                          <span className={`text-xs px-2 py-1 rounded-full ${race.status === 'completed' ? 'bg-success-container text-success-foreground' :
+                              race.status === 'live' ? 'bg-warning-container text-warning-foreground' :
+                                'bg-muted text-muted-foreground'
+                            }`}>
                             {race.status}
                           </span>
                         </div>
@@ -316,12 +315,11 @@ export function DisciplinePage({ discipline, selectedSeason, onBack }: Disciplin
                   {athletes.map((athlete, index) => (
                     <div key={athlete.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-surface-container transition-colors">
                       <div className="relative">
-                        <AthleteImage
-                          athleteId={athlete.id}
-                          athleteName={athlete.name}
-                          className="w-10 h-10 rounded-lg"
-                          width={40}
-                          height={40}
+                        <img
+                          src={`https://flagcdn.com/w80/${getCountryCode(athlete.country)}.png`}
+                          alt={athlete.country}
+                          className="w-10 h-10 rounded-lg object-cover shadow-sm"
+                          style={{ aspectRatio: '4/3' }}
                         />
                         <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
                           {index + 1}
@@ -345,7 +343,7 @@ export function DisciplinePage({ discipline, selectedSeason, onBack }: Disciplin
             <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
               <h3 className="text-xl font-bold mb-4">History</h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">{disciplineInfo.history}</p>
-              
+
               <h4 className="font-semibold mb-2">Famous Races</h4>
               <ul className="space-y-1">
                 {disciplineInfo.famousRaces.map((race, index) => (
