@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { 
-  Home, 
-  Calendar, 
-  MapPin, 
-  Users, 
-  Trophy, 
-  Zap, 
-  Mountain, 
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  Home,
+  Calendar,
+  MapPin,
+  Users,
+  Trophy,
+  Zap,
+  Mountain,
   Target,
   BarChart3,
   Settings,
@@ -17,8 +18,6 @@ import {
 } from 'lucide-react';
 
 interface SidebarNavigationProps {
-  currentView: string;
-  onViewChange: (view: string) => void;
   selectedSeason: '2024/2025' | '2025/2026';
   onSeasonChange: (season: '2024/2025' | '2025/2026') => void;
   isDarkMode: boolean;
@@ -26,41 +25,48 @@ interface SidebarNavigationProps {
 }
 
 export function SidebarNavigation({
-  currentView,
-  onViewChange,
   selectedSeason,
   onSeasonChange,
   isDarkMode,
   onThemeToggle
 }: SidebarNavigationProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const mainNavItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: Home },
-    { id: 'races', label: 'Races', icon: Calendar },
-    { id: 'locations', label: 'Locations', icon: MapPin },
-    { id: 'athletes', label: 'Athletes', icon: Users },
-    { id: 'standings', label: 'Standings', icon: Trophy },
+    { id: '/', label: 'Dashboard', icon: Home },
+    { id: '/races', label: 'Races', icon: Calendar },
+    { id: '/locations', label: 'Locations', icon: MapPin },
+    { id: '/athletes', label: 'Athletes', icon: Users },
+    { id: '/standings', label: 'Standings', icon: Trophy },
   ];
 
   const disciplineItems = [
-    { id: 'slalom', label: 'Slalom', icon: Target },
-    { id: 'giant-slalom', label: 'Giant Slalom', icon: Mountain },
-    { id: 'super-g', label: 'Super G', icon: Zap },
-    { id: 'downhill', label: 'Downhill', icon: BarChart3 },
+    { id: '/discipline/slalom', label: 'Slalom', icon: Target },
+    { id: '/discipline/giant-slalom', label: 'Giant Slalom', icon: Mountain },
+    { id: '/discipline/super-g', label: 'Super G', icon: Zap },
+    { id: '/discipline/downhill', label: 'Downhill', icon: BarChart3 },
   ];
 
   const utilityItems = [
-    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: '/settings', label: 'Settings', icon: Settings },
   ];
 
-  const NavItem = ({ item, isActive }: { item: any; isActive: boolean }) => (
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(path);
+  };
+
+  const NavItem = ({ item }: { item: { id: string; label: string; icon: any } }) => (
     <button
-      onClick={() => onViewChange(item.id)}
+      onClick={() => navigate(item.id)}
       className={`
         w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group
-        ${isActive 
-          ? 'bg-primary text-primary-foreground shadow-md' 
+        ${isActive(item.id)
+          ? 'bg-primary text-primary-foreground shadow-md'
           : 'hover:bg-surface-container text-on-surface hover:text-on-surface'
         }
         ${isCollapsed ? 'justify-center px-2' : ''}
@@ -68,7 +74,7 @@ export function SidebarNavigation({
     >
       <item.icon className={`
         transition-transform duration-200 
-        ${isActive ? 'scale-110' : 'group-hover:scale-105'} 
+        ${isActive(item.id) ? 'scale-110' : 'group-hover:scale-105'} 
         ${isCollapsed ? 'w-5 h-5' : 'w-5 h-5 flex-shrink-0'}
       `} />
       {!isCollapsed && (
@@ -132,11 +138,7 @@ export function SidebarNavigation({
           )}
           <div className="space-y-1">
             {mainNavItems.map((item) => (
-              <NavItem
-                key={item.id}
-                item={item}
-                isActive={currentView === item.id}
-              />
+              <NavItem key={item.id} item={item} />
             ))}
           </div>
         </div>
@@ -150,11 +152,7 @@ export function SidebarNavigation({
           )}
           <div className="space-y-1">
             {disciplineItems.map((item) => (
-              <NavItem
-                key={item.id}
-                item={item}
-                isActive={currentView === item.id}
-              />
+              <NavItem key={item.id} item={item} />
             ))}
           </div>
         </div>
@@ -165,11 +163,7 @@ export function SidebarNavigation({
         {/* Utility Navigation */}
         <div className="space-y-1">
           {utilityItems.map((item) => (
-            <NavItem
-              key={item.id}
-              item={item}
-              isActive={currentView === item.id}
-            />
+            <NavItem key={item.id} item={item} />
           ))}
         </div>
 
