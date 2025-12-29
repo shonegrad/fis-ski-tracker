@@ -132,7 +132,7 @@ class DataService {
                 birthDate: '1995-01-01',
                 birthPlace: 'Unknown',
                 worldCupDebut: '2018',
-                image: getAthletePhoto(competitorId),
+                image: getAthletePhoto(competitorId, 'Unknown'),
             };
         }
 
@@ -150,7 +150,7 @@ class DataService {
             worldCupWins: standing?.rank <= 3 ? Math.floor(Math.random() * 10) + 5 : Math.floor(Math.random() * 5),
             olympicMedals: standing?.rank <= 5 ? Math.floor(Math.random() * 3) : 0,
             worldChampionships: standing?.rank <= 5 ? Math.floor(Math.random() * 3) : 0,
-            image: getAthletePhoto(athlete.id),
+            image: getAthletePhoto(athlete.id, athlete.countryCode || athlete.country),
             equipment: athlete.equipment,
             currentSeasonStats: {
                 races: calendarData.races.filter((r: any) => r.status === 'completed').length,
@@ -229,9 +229,9 @@ class DataService {
 
     private get2024Competitors() {
         return [
-            { id: 'odermatt-marco', name: 'Marco Odermatt', country: 'Switzerland', age: 26, disciplines: ['Downhill', 'Giant Slalom', 'Super G'], worldCupPoints: 2042, rank: 1, image: getAthletePhoto('odermatt-marco') },
-            { id: 'schwarz-marco', name: 'Marco Schwarz', country: 'Austria', age: 28, disciplines: ['Slalom', 'Giant Slalom', 'Super G'], worldCupPoints: 968, rank: 2, image: getAthletePhoto('schwarz-marco') },
-            { id: 'kristoffersen-henrik', name: 'Henrik Kristoffersen', country: 'Norway', age: 29, disciplines: ['Slalom', 'Giant Slalom'], worldCupPoints: 845, rank: 3, image: getAthletePhoto('kristoffersen-henrik') },
+            { id: 'odermatt-marco', name: 'Marco Odermatt', country: 'Switzerland', age: 26, disciplines: ['Downhill', 'Giant Slalom', 'Super G'], worldCupPoints: 2042, rank: 1, image: getAthletePhoto('odermatt-marco', 'SUI') },
+            { id: 'schwarz-marco', name: 'Marco Schwarz', country: 'Austria', age: 28, disciplines: ['Slalom', 'Giant Slalom', 'Super G'], worldCupPoints: 968, rank: 2, image: getAthletePhoto('schwarz-marco', 'AUT') },
+            { id: 'kristoffersen-henrik', name: 'Henrik Kristoffersen', country: 'Norway', age: 29, disciplines: ['Slalom', 'Giant Slalom'], worldCupPoints: 845, rank: 3, image: getAthletePhoto('kristoffersen-henrik', 'NOR') },
         ];
     }
 
